@@ -27,8 +27,9 @@
               "projects/mojeprzejazdy/src/assets"
             ],
             "styles": [
-              "projects/mojeprzejazdy/src/styles.css"
-            ],
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+
+                        ],
             "scripts": []
           },
           "configurations": {
