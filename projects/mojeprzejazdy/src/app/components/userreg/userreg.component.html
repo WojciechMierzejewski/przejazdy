@@ -1,30 +1,131 @@
 <h3>Moje Przejazdy</h3>
-  <h4>User registration forms</h4>
+<h4>User registration forms</h4>
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-<div class="container-fluid">
-<div class="row">
-  <div class="form-group">
-    <label for="first_name">First name</label>
-    <br>
-    <input
-      type="text"
-      id="first_name"
-      name="first_name"
-      size="50"
-      placeholder="your first name"
-    />
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="form-group"
+           [ngClass]="{ 'has error': invalidFirstName() }"
+           style="width: 100%"
+      >
+        <label for="first_name">First name</label>
+        <br>
+        <input
+          type="text"
+          id="first_name"
+          name="first_name"
+          size="50"
+          placeholder="your first name"
+        />
+        <p *ngIf="invalidFirstName()" id="first_name_error" class="help-block">
+          Inproper first name
+        </p>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'has-error': invalidSecondName() }"
+           style="width: 100%"
+      >
+        <label for="second_name">Second name</label>
+        <br>
+        <input
+          type="text"
+          id="second_name"
+          name="second_name"
+          size="50"
+          placeholder="your second name"
+        />
+        <p *ngIf="invalidSecondName()" id="second_name_error" class="help-block">
+          Inproper second name
+        </p>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'has-error': invalidAddress()}"
+           style="width: 100%"
+      >
+        <label for="home_address">Address</label>
+        <br>
+        <input
+          type="text"
+          id="home_address"
+          name="home_address"
+          size="50"
+          placeholder="your address"
+        />
+        <p *ngIf="invalidAddress()" id="address_error" class="help-block">
+          Inproper address input
+        </p>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'has-error': invalidEmailAddress() }"
+           style="width: 100%"
+      >
+        <label for="email address">Email address</label>
+        <br>
+        <input
+          type="text"
+          id="email address"
+          name="email address"
+          size="50"
+          placeholder="your email address"
+        />
+        <p *ngIf="invalidEmailAddress()" id="email_address_error" class="help-block">
+          Inproper email address
+        </p>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{ 'has-error': invalidPhoneNo()}"
+           style="width: 100%"
+      >
+        <label for="phone">Phone no.</label>
+        <br>
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          size="50"
+          placeholder="your phone"
+        />
+        <p *ngIf="invalidPhoneNo()" id="phone_no_error" class="help-block">
+          Inproper phone no.
+        </p>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'has-error': invalidPassword()}"
+           style="width: 100%"
+      >
+        <label for="password">Password</label>
+        <br>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          size="50"
+          placeholder="password"
+        />
+        <p *ngIf="invalidPassword()" id="password_error" class="help-block">
+          Inproper password
+        </p>
+      </div>
+
+      <div class="form-group" style="width: 100%">
+        <label for="role">Role</label>
+        <br>
+        <input list="roles" name="role" id="role"/>
+        <datalist id="roles">
+          <option value="driver/passenger"></option>
+          <option value="passenger"></option>
+        </datalist>
+      </div>
+      <div class="form-group">
+
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="second_name">Second name</label>
-    <br>
-    <input
-      type="text"
-      id="second_name"
-      name="second_name"
-      size="50"
-      placeholder="your second name"
-    />
-  </div>
-</div>
-</div>
 </form>
