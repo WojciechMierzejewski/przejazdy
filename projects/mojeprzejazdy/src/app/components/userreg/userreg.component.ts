@@ -11,12 +11,11 @@ export class UserregComponent implements OnInit {
   submitted = false;
   registered = false;
 
-  constructor(public formBuilder: FormBuilder) {
-  }
+
 
   userForm: FormGroup = new FormGroup({
-    first_name: new FormControl(undefined,
-      [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$'),]),
+    first_name: new FormControl(undefined, [
+      Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$'),]),
     second_name: new FormControl(undefined,
       [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$'),]),
     address: new FormControl('',
@@ -25,12 +24,15 @@ export class UserregComponent implements OnInit {
       [Validators.required, Validators.email]]),
     phone: new FormControl(['',
       [Validators.required, Validators.pattern('^[1-9][0-9]*$')],]),
-    password: new FormControl(undefined,
+    password: new FormControl(['',
       [Validators.required, Validators.minLength(5),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),]),
-  })
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),],]),
+  });
 
-  ngOnInit(): void {
+  constructor(public formBuilder: FormBuilder) {
+  }
+
+  ngOnInit() {
     this.userForm = this.formBuilder.group({
       first_name: ['', [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$')],],
       second_name: ['', [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$')],],
@@ -40,11 +42,11 @@ export class UserregComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(5),
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),],],
 
-    })
+    });
   }
 
   invalidFirstName(): boolean {
-    const result = !this.isFirstNameValid(this.userForm.controls.first_name_error) && !this.isFormSubmitted();
+    const result = !this.isFirstNameValid(this.userForm.controls.first_name.errors) && !this.isFormSubmitted();
     console.log('invalid first name', result);
     return result;
   }
@@ -57,24 +59,82 @@ export class UserregComponent implements OnInit {
     return errors === null;
   }
 
-  invalidSecondName() {
-
+  invalidSecondName(): boolean {
+    const result = !this.isSecondNameValid(this.userForm.controls.second_name.errors) && !this.isFormSubmitted();
+    console.log('invalid sname', result);
+    return result;
   }
 
-  invalidAddress() {
-
+  isSecondNameValid(errors: ValidationErrors): boolean{
+    return this.validateSecondName(errors);
   }
 
-  invalidEmailAddress() {
-
+  validateSecondName(errors: ValidationErrors): boolean{
+    return errors === null;
   }
 
-  invalidPhoneNo() {
-
+  invalidAddress(): boolean {
+    const result =
+      !this.isAddressValid(this.userForm.controls.address.errors) &&
+      !this.isFormSubmitted();
+    console.log('invalidAddress:', result);
+    return result;
   }
 
-  invalidPassword() {
+  isAddressValid(errors: ValidationErrors): boolean {
+    return this.validateAddress(errors);
+  }
 
+  validateAddress(errors: ValidationErrors): boolean {
+    return errors === null;
+  }
+
+  invalidEmailAddress(): boolean {
+    const result =
+      !this.isEmailValid(this.userForm.controls.email.errors) &&
+      !this.isFormSubmitted();
+    console.log('invalidEmail:', result);
+    return result;
+  }
+
+  isEmailValid(errors: ValidationErrors): boolean {
+    return this.validateEmail(errors);
+  }
+
+  validateEmail(errors: ValidationErrors): boolean {
+    return errors === null;
+  }
+
+  invalidPhoneNo(): boolean {
+    const result =
+      !this.isPhoneValid(this.userForm.controls.phone.errors) &&
+      !this.isFormSubmitted();
+    console.log('invalidPhone:', result);
+    return result;
+  }
+
+  isPhoneValid(errors: ValidationErrors): boolean {
+    return this.validatePhone(errors);
+  }
+
+  validatePhone(errors: ValidationErrors): boolean {
+    return errors === null;
+  }
+
+  invalidPassword(): boolean {
+    const result =
+      !this.isPasswordValid(this.userForm.controls.password.errors) &&
+      !this.isFormSubmitted();
+    console.log('invalidPasswd:', result);
+    return result;
+  }
+
+  isPasswordValid(errors: ValidationErrors): boolean {
+    return this.validatePassword(errors);
+  }
+
+  validatePassword(errors: ValidationErrors): boolean {
+    return errors === null;
   }
 
   private isFormSubmitted(): boolean {

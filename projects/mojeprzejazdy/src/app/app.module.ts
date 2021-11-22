@@ -9,7 +9,7 @@ import { RouteComponent } from './components/route/route.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import {LoginComponent} from "./components/login/login.component";
 import {GroupviewComponent} from "./components/groupview/groupview.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

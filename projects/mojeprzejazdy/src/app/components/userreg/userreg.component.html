@@ -14,6 +14,7 @@
           type="text"
           id="first_name"
           name="first_name"
+          [formControl]="userForm.get('first_name')"
           size="50"
           placeholder="your first name"
         />
@@ -32,6 +33,7 @@
           type="text"
           id="second_name"
           name="second_name"
+          [formControl]="userForm.get('second_name')"
           size="50"
           placeholder="your second name"
         />
@@ -50,6 +52,7 @@
           type="text"
           id="home_address"
           name="home_address"
+          [formControl]="userForm.get('home_address')"
           size="50"
           placeholder="your address"
         />
@@ -62,12 +65,13 @@
            [ngClass]="{'has-error': invalidEmailAddress() }"
            style="width: 100%"
       >
-        <label for="email address">Email address</label>
+        <label for="email_address">Email address</label>
         <br>
         <input
           type="text"
-          id="email address"
-          name="email address"
+          id="email_address"
+          name="email_address"
+          [formControl]="userForm.get('email_address')"
           size="50"
           placeholder="your email address"
         />
@@ -86,6 +90,7 @@
           type="text"
           id="phone"
           name="phone"
+          [formControl]="userForm.get('phone')"
           size="50"
           placeholder="your phone"
         />
@@ -104,6 +109,7 @@
           type="text"
           id="password"
           name="password"
+          [formControl]="userForm.get('password')"
           size="50"
           placeholder="password"
         />
