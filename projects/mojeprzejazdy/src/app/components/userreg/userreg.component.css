@@ -1,0 +1,9 @@
+.has-error {
+    color: red;
+    background-color: yellow;
+  }
+  
+  input, label {
+    display:block;
+  }
+  
