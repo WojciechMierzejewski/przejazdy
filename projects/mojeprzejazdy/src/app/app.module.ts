@@ -7,7 +7,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import {LoginComponent} from "./components/login/login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +17,13 @@ import { AppRoutingModule } from './app-routing.module'
     OverviewComponent,
     ScheduleComponent,
     NotfoundComponent,
-    AppRoutingModule
+
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

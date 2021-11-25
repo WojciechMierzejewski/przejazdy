@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { AppRoutingModule } from '../../app-routing.module';
 import { AuthGuard } from '../../service/auth.guard';
@@ -9,16 +10,18 @@ import { AuthGuard } from '../../service/auth.guard';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authGuard: AuthGuard, private router: AppRoutingModule) {}
+  constructor(private authGuard: AuthGuard, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authGuard.authenticate('', '');
+  }
   onLogin(): void {
-    const x=false;
-    const subscription = new Observable(x => {this.authGuard.authenticate},);
+    const x = false;
+    // const subscription = new Observable(x => { if(this.authGuard.authenticate('', '') === true)},);
 
-    if () {
-      this.router.navigate();
-    } else { 
+    if (true) {
+      this.router.navigate(['/home']);
+    } else {
     }
   }
 }
