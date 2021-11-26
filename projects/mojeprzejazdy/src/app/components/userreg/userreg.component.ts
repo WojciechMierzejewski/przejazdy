@@ -44,7 +44,7 @@ export class UserregComponent implements OnInit {
     ]),
   });
 
-  constructor(public formBuilder: FormBuilder) {}
+  constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -78,11 +78,11 @@ export class UserregComponent implements OnInit {
     return result;
   }
 
-  isFirstNameValid(errors: ValidationErrors): boolean {
+  isFirstNameValid(errors: ValidationErrors | null): boolean {
     return this.validateFirstName(errors);
   }
 
-  validateFirstName(errors: ValidationErrors): boolean {
+  validateFirstName(errors: ValidationErrors | null): boolean {
     return errors === null;
   }
 
@@ -94,11 +94,11 @@ export class UserregComponent implements OnInit {
     return result;
   }
 
-  isSecondNameValid(errors: ValidationErrors): boolean {
+  isSecondNameValid(errors: ValidationErrors | null): boolean {
     return this.validateSecondName(errors);
   }
 
-  validateSecondName(errors: ValidationErrors): boolean {
+  validateSecondName(errors: ValidationErrors | null): boolean {
     return errors === null;
   }
 
@@ -110,11 +110,11 @@ export class UserregComponent implements OnInit {
     return result;
   }
 
-  isAddressValid(errors: ValidationErrors): boolean {
+  isAddressValid(errors: ValidationErrors | null): boolean {
     return this.validateAddress(errors);
   }
 
-  validateAddress(errors: ValidationErrors): boolean {
+  validateAddress(errors: ValidationErrors | null): boolean {
     return errors === null;
   }
 
@@ -126,11 +126,11 @@ export class UserregComponent implements OnInit {
     return result;
   }
 
-  isEmailValid(errors: ValidationErrors): boolean {
+  isEmailValid(errors: ValidationErrors | null): boolean {
     return this.validateEmail(errors);
   }
 
-  validateEmail(errors: ValidationErrors): boolean {
+  validateEmail(errors: ValidationErrors | null): boolean {
     return errors === null;
   }
 
@@ -142,11 +142,11 @@ export class UserregComponent implements OnInit {
     return result;
   }
 
-  isPhoneValid(errors: ValidationErrors): boolean {
+  isPhoneValid(errors: ValidationErrors | null): boolean {
     return this.validatePhone(errors);
   }
 
-  validatePhone(errors: ValidationErrors): boolean {
+  validatePhone(errors: ValidationErrors | null): boolean {
     return errors === null;
   }
 
@@ -158,11 +158,11 @@ export class UserregComponent implements OnInit {
     return result;
   }
 
-  isPasswordValid(errors: ValidationErrors): boolean {
+  isPasswordValid(errors: ValidationErrors | null): boolean {
     return this.validatePassword(errors);
   }
 
-  validatePassword(errors: ValidationErrors): boolean {
+  validatePassword(errors: ValidationErrors | null): boolean {
     return errors === null;
   }
 
@@ -177,5 +177,9 @@ export class UserregComponent implements OnInit {
     } else {
       this.registered = true;
     }
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.userForm.get('first_name') as FormControl;
   }
 }
