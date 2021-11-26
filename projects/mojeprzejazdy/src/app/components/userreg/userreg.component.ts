@@ -16,33 +16,7 @@ export class UserregComponent implements OnInit {
   submitted = false;
   registered = false;
 
-  userForm: FormGroup = new FormGroup({
-    first_name: new FormControl(undefined, [
-      Validators.required,
-      Validators.pattern('^[A-Z]{1}[a-z]{3,}$'),
-    ]),
-    second_name: new FormControl(undefined, [
-      Validators.required,
-      Validators.pattern('^[A-Z]{1}[a-z]{3,}$'),
-    ]),
-    home_address: new FormControl('', Validators.required),
-    email_address: new FormControl([
-      '',
-      [Validators.required, Validators.email],
-    ]),
-    phone: new FormControl([
-      '',
-      [Validators.required, Validators.pattern('^[1-9][0-9]*$')],
-    ]),
-    password: new FormControl([
-      '',
-      [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
-      ],
-    ]),
-  });
+  userForm: FormGroup = new FormGroup({});
 
   constructor(public formBuilder: FormBuilder) { }
 
