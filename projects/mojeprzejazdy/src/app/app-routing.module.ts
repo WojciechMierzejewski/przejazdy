@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { UserregComponent } from './components/userreg/userreg.component';
 import { AuthGuard } from './service/auth.guard';
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
         path: '',
         redirectTo: 'overview',
         pathMatch: 'full',
+      },
+      {
+        path: 'register',
+        component: UserregComponent
       },
       {
         path: 'overview',
