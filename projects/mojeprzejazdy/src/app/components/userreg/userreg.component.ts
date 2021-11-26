@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators,
+  Validators
 } from '@angular/forms';
 
 @Component({
@@ -72,66 +72,34 @@ export class UserregComponent implements OnInit {
 
   invalidFirstName(): boolean {
     const result =
-      !this.isFirstNameValid(this.userForm.controls.first_name.errors) &&
+      !this.isFormControlValid(this.userForm.controls.first_name.errors) &&
       !this.isFormSubmitted();
     console.log('invalid first name', result);
     return result;
   }
 
-  isFirstNameValid(errors: ValidationErrors | null): boolean {
-    return this.validateFirstName(errors);
-  }
-
-  validateFirstName(errors: ValidationErrors | null): boolean {
-    return errors === null;
-  }
-
   invalidSecondName(): boolean {
     const result =
-      !this.isSecondNameValid(this.userForm.controls.second_name.errors) &&
+      !this.isFormControlValid(this.userForm.controls.second_name.errors) &&
       !this.isFormSubmitted();
     console.log('invalid sname', result);
     return result;
   }
 
-  isSecondNameValid(errors: ValidationErrors | null): boolean {
-    return this.validateSecondName(errors);
-  }
-
-  validateSecondName(errors: ValidationErrors | null): boolean {
-    return errors === null;
-  }
-
   invalidAddress(): boolean {
     const result =
-      !this.isAddressValid(this.userForm.controls.home_address.errors) &&
+      !this.isFormControlValid(this.userForm.controls.home_address.errors) &&
       !this.isFormSubmitted();
     console.log('invalidAddress:', result);
     return result;
   }
 
-  isAddressValid(errors: ValidationErrors | null): boolean {
-    return this.validateAddress(errors);
-  }
-
-  validateAddress(errors: ValidationErrors | null): boolean {
-    return errors === null;
-  }
-
   invalidEmailAddress(): boolean {
     const result =
-      !this.isEmailValid(this.userForm.controls.email_address.errors) &&
+      !this.isFormControlValid(this.userForm.controls.email_address.errors) &&
       !this.isFormSubmitted();
     console.log('invalidEmail:', result);
     return result;
-  }
-
-  isEmailValid(errors: ValidationErrors | null): boolean {
-    return this.validateEmail(errors);
-  }
-
-  validateEmail(errors: ValidationErrors | null): boolean {
-    return errors === null;
   }
 
   invalidPhoneNo(): boolean {
@@ -152,17 +120,17 @@ export class UserregComponent implements OnInit {
 
   invalidPassword(): boolean {
     const result =
-      !this.isPasswordValid(this.userForm.controls.password.errors) &&
+      !this.isFormControlValid(this.userForm.controls.password.errors) &&
       !this.isFormSubmitted();
     console.log('invalidPasswd:', result);
     return result;
   }
 
-  isPasswordValid(errors: ValidationErrors | null): boolean {
-    return this.validatePassword(errors);
+  isFormControlValid(errors: ValidationErrors | null): boolean {
+    return this.validateFormControl(errors);
   }
 
-  validatePassword(errors: ValidationErrors | null): boolean {
+  validateFormControl(errors: ValidationErrors | null): boolean {
     return errors === null;
   }
 
