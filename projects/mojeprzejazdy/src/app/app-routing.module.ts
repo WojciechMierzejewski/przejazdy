@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { AuthGuard } from './service/auth.guard';
@@ -9,7 +8,6 @@ const routes: Routes = [
   {
     path: '',
     // component: AppComponent,
-
     children: [
       {
         path: '',
@@ -44,4 +42,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
