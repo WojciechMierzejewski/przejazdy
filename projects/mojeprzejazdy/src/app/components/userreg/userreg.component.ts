@@ -124,4 +124,14 @@ export class UserregComponent implements OnInit {
   getFormControl(name: string): FormControl {
     return this.userForm.get('first_name') as FormControl;
   }
+
+  clearFormControlValue(name: string): void {
+    const fc = this.getFormControl(name);
+    fc.setValue(null);
+  }
+
+  hasValue(name: string): boolean {
+    const fc = this.getFormControl(name);
+    return (fc.value !== null && fc.value !== undefined && fc.value !== '');
+  }
 }
