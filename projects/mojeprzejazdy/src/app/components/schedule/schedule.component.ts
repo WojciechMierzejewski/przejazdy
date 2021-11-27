@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
+  }
+
+  onDodajClick(event: Event): void {
+
   }
 
 }
