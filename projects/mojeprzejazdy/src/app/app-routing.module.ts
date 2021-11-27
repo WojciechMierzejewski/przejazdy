@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './components/overview/overview.component';
+import { RoutesComponent } from './components/routes/routes.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { UserregComponent } from './components/userreg/userreg.component';
 import { AuthGuard } from './service/auth.guard';
@@ -33,6 +34,10 @@ const routes: Routes = [
             path: 'schedule',
             component: ScheduleComponent,
           },
+          {
+            path: 'routes',
+            component: RoutesComponent,
+          }
         ],
       },
       {

@@ -14,6 +14,7 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { UserregComponent } from './components/userreg/userreg.component';
 import { ScheduleDialogComponent } from './components/schedule/schedule-dialog/schedule-dialog.component';
+import { RoutesComponent } from './components/routes/routes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { ScheduleDialogComponent } from './components/schedule/schedule-dialog/s
     ScheduleComponent,
     NotfoundComponent,
     ScheduleDialogComponent,
+    RoutesComponent,
   ],
   imports: [
     BrowserModule,
