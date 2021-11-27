@@ -12,7 +12,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { UserregComponent } from './components/userreg/userreg.component';
-
+import { ScheduleDialogComponent } from './components/schedule/schedule-dialog/schedule-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +21,7 @@ import { UserregComponent } from './components/userreg/userreg.component';
     OverviewComponent,
     ScheduleComponent,
     NotfoundComponent,
+    ScheduleDialogComponent,
   ],
   imports: [
     BrowserModule,
