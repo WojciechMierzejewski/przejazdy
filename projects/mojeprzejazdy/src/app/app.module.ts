@@ -12,9 +12,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from "./components/login/login.component";
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { OverviewComponent } from './components/overview/overview.component';
-import { RoutesComponent } from './components/routes/routes.component';
 import { ScheduleDialogComponent } from './components/schedule/schedule-dialog/schedule-dialog.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { UserregComponent } from './components/userreg/userreg.component';
     ScheduleComponent,
     NotfoundComponent,
     ScheduleDialogComponent,
-    RoutesComponent,
+    TransitsComponent,
   ],
   imports: [
     BrowserModule,

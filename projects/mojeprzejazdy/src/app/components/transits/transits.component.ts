@@ -1,20 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { Route } from '../../model/route';
-import { RoutesService } from '../../service/routes.service';
+import { Transit } from '../../model/transit';
+import { TransitService } from '../../service/transit.service';
 
 @Component({
   selector: 'app-routes',
-  templateUrl: './routes.component.html',
-  styleUrls: ['./routes.component.css']
+  templateUrl: './transits.component.html',
+  styleUrls: ['./transits.component.css']
 })
-export class RoutesComponent implements OnInit, OnDestroy {
+export class TransitsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
-  dataSource: MatTableDataSource<Route> = new MatTableDataSource<Route>();
+  dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
   private dataSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: RoutesService) { }
+  constructor(private dataService: TransitService) { }
 
   ngOnInit(): void {
     this.dataSubscription = this.dataService.fetchData()

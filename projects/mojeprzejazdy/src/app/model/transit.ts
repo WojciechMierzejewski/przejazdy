@@ -1,12 +1,8 @@
-import {Address} from "./address";
+import { Address } from "./address";
 
-export interface Route {
+export interface Transit {
   id: number;
   points: Address[];
   valid: boolean;
   schedules: Date[];
-
-
-
-
 }

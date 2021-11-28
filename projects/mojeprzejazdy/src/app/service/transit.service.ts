@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Route } from '../model/route';
+import { Transit } from '../model/transit';
 
-const data: Route[] = [
+const data: Transit[] = [
   { id: 1, points: [], valid: true, schedules: [] },
   { id: 2, points: [], valid: true, schedules: [] },
   { id: 3, points: [], valid: true, schedules: [] },
@@ -17,11 +17,11 @@ const data: Route[] = [
 @Injectable({
   providedIn: 'root'
 })
-export class RoutesService {
+export class TransitService {
 
   constructor() { }
 
-  fetchData(): Observable<Route[]> {
+  fetchData(): Observable<Transit[]> {
     return of(data);
   }
 }
