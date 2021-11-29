@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +17,6 @@ import { ScheduleDialogComponent } from './components/schedule/schedule-dialog/s
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +38,8 @@ import { UserregComponent } from './components/userreg/userreg.component';
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

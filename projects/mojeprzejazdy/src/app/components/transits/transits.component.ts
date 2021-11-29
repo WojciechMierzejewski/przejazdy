@@ -19,6 +19,9 @@ export class TransitsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.dataSubscription = this.dataService.fetchData()
       .subscribe(data => this.dataSource = new MatTableDataSource(data));
+    this.dataSubscription.unsubscribe();
+    this.dataSubscription = this.dataService.fetchDataFromServer()
+      .subscribe(data => console.log('Data from server', data));
   }
 
   ngOnDestroy(): void {

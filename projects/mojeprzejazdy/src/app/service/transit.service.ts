@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Transit } from '../model/transit';
@@ -19,9 +20,13 @@ const data: Transit[] = [
 })
 export class TransitService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   fetchData(): Observable<Transit[]> {
     return of(data);
+  }
+
+  fetchDataFromServer(): Observable<any> {
+    return this.httpClient.get('/api/group/getlist');
   }
 }
