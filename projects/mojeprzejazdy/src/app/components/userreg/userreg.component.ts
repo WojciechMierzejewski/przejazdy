@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators
+  Validators,
 } from '@angular/forms';
 
 @Component({
@@ -18,7 +18,7 @@ export class UserregComponent implements OnInit {
 
   userForm: FormGroup = new FormGroup({});
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -78,7 +78,7 @@ export class UserregComponent implements OnInit {
 
   invalidPhoneNo(): boolean {
     const result =
-      !this.isPhoneValid(this.userForm.controls.phone.errors) &&
+      !this.isFormControlValid(this.userForm.controls.phone.errors) &&
       !this.isFormSubmitted();
     console.log('invalidPhone:', result);
     return result;
@@ -132,6 +132,6 @@ export class UserregComponent implements OnInit {
 
   hasValue(name: string): boolean {
     const fc = this.getFormControl(name);
-    return (fc.value !== null && fc.value !== undefined && fc.value !== '');
+    return fc.value !== null && fc.value !== undefined && fc.value !== '';
   }
 }

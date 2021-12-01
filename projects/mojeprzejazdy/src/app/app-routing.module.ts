@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TransitsComponent } from './components/transits/transits.component';
@@ -18,7 +19,11 @@ const routes: Routes = [
       },
       {
         path: 'register',
-        component: UserregComponent
+        component: UserregComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
       },
       {
         path: 'overview',
@@ -37,7 +42,7 @@ const routes: Routes = [
           {
             path: 'transits',
             component: TransitsComponent,
-          }
+          },
         ],
       },
       {
@@ -52,4 +57,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

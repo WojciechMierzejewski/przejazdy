@@ -16,17 +16,16 @@ const data: Transit[] = [
   { id: 10, points: [], valid: true, schedules: [] },
 ];
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransitService {
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   fetchData(): Observable<Transit[]> {
     return of(data);
   }
 
   fetchDataFromServer(): Observable<any> {
-    return this.httpClient.get('/api/group/getlist');
+    return this.httpClient.get('');
   }
 }

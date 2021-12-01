@@ -3,73 +3,109 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div class="container-fluid">
     <div class="row">
-
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>First name</mat-label>
-        <input matInput type="text" [formControl]="getFormControl('first_name')">
-        <button *ngIf="hasValue('first_name')" matSuffix mat-icon-button aria-label="Clear"
-          (click)="clearFormControlValue('first_name')">
+        <input
+          matInput
+          type="text"
+          [formControl]="getFormControl('first_name')"
+        />
+        <button
+          *ngIf="hasValue('first_name')"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearFormControlValue('first_name')"
+        >
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
 
-      <div class="form-group" [ngClass]="{ 'has-error': invalidFirstName() }" style="width: 100%">
-        <label for="first_name">First name</label>
-        <input type="text" id="first_name" name="first_name" [formControl]="getFormControl('first_name')" size="50"
-          placeholder="your first name" />
-        <p *ngIf="invalidFirstName()" id="first_name_error" class="help-block">
-          Inproper first name
-        </p>
-      </div>
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Second name</mat-label>
+        <input
+          matInput
+          type="text"
+          [formControl]="getFormControl('second_name')"
+        />
+        <button
+          *ngIf="hasValue('second_name')"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearFormControlValue('second_name')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-      <div class="form-group" [ngClass]="{ 'has-error': invalidSecondName() }" style="width: 100%">
-        <label for="second_name">Second name</label>
-        <input type="text" id="second_name" name="second_name" [formControl]="getFormControl('second_name')" size="50"
-          placeholder="your second name" />
-        <p *ngIf="invalidSecondName()" id="second_name_error" class="help-block">
-          Inproper second name
-        </p>
-      </div>
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          type="text"
+          [formControl]="getFormControl('home_address')"
+        />
+        <button
+          *ngIf="hasValue('home_address')"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearFormControlValue('home_address')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-      <div class="form-group" [ngClass]="{ 'has-error': invalidAddress()}" style="width: 100%">
-        <label for="home_address">Address</label>
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Email address</mat-label>
+        <input
+          matInput
+          type="text"
+          [formControl]="getFormControl('email_address')"
+        />
+        <button
+          *ngIf="hasValue('email_address')"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearFormControlValue('email_address')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-        <input type="text" id="home_address" name="home_address" [formControl]="getFormControl('home_address')"
-          size="50" placeholder="your address" />
-        <p *ngIf="invalidAddress()" id="address_error" class="help-block">
-          Inproper address input
-        </p>
-      </div>
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Phone no.</mat-label>
+        <input matInput type="text" [formControl]="getFormControl('phone')" />
+        <button
+          *ngIf="hasValue('phone')"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearFormControlValue('phone')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-      <div class="form-group" [ngClass]="{ 'has-error': invalidEmailAddress() }" style="width: 100%">
-        <label for="email_address">Email address</label>
-
-        <input type="text" id="email_address" name="email_address" [formControl]="getFormControl('email_address')"
-          size="50" placeholder="your email address" />
-        <p *ngIf="invalidEmailAddress()" id="email_address_error" class="help-block">
-          Inproper email address
-        </p>
-      </div>
-
-      <div class="form-group" [ngClass]="{ 'has-error': invalidPhoneNo()}" style="width: 100%">
-        <label for="phone">Phone no.</label>
-
-        <input type="text" id="phone" name="phone" [formControl]="getFormControl('phone')" size="50"
-          placeholder="your phone" />
-        <p *ngIf="invalidPhoneNo()" id="phone_no_error" class="help-block">
-          Inproper phone no.
-        </p>
-      </div>
-
-      <div class="form-group" [ngClass]="{ 'has-error': invalidPassword()}" style="width: 100%">
-        <label for="password">Password</label>
-
-        <input type="text" id="password" name="password" [formControl]="getFormControl('password')" size="50"
-          placeholder="password" />
-        <p *ngIf="invalidPassword()" id="password_error" class="help-block">
-          Inproper password
-        </p>
-      </div>
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="text"
+          [formControl]="getFormControl('password')"
+        />
+        <button
+          *ngIf="hasValue('password')"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearFormControlValue('password')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
       <div class="form-group" style="width: 100%">
         <label for="role">Role</label>
@@ -81,8 +117,7 @@
         </datalist>
       </div>
       <div class="form-group">
-
-        <br>
+        <br />
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
