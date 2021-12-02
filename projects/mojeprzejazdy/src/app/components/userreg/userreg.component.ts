@@ -15,6 +15,7 @@ import {
 export class UserregComponent implements OnInit {
   submitted = false;
   registered = false;
+  errormessage = 'wrong input';
 
   userForm: FormGroup = new FormGroup({});
 
@@ -84,13 +85,13 @@ export class UserregComponent implements OnInit {
     return result;
   }
 
-  isPhoneValid(errors: ValidationErrors | null): boolean {
-    return this.validatePhone(errors);
-  }
+  // isPhoneValid(errors: ValidationErrors | null): boolean {
+  //   return this.validatePhone(errors);
+  // }
 
-  validatePhone(errors: ValidationErrors | null): boolean {
-    return errors === null;
-  }
+  // validatePhone(errors: ValidationErrors | null): boolean {
+  //   return errors === null;
+  // }
 
   invalidPassword(): boolean {
     const result =
@@ -133,5 +134,9 @@ export class UserregComponent implements OnInit {
   hasValue(name: string): boolean {
     const fc = this.getFormControl(name);
     return fc.value !== null && fc.value !== undefined && fc.value !== '';
+  }
+
+  getErrorMessage(): string {
+    return this.errormessage;
   }
 }
