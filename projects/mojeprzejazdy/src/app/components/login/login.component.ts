@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../../service/auth.guard';
 
@@ -19,36 +24,35 @@ export class LoginComponent implements OnInit {
   password = '';
   submitted = false;
   login: FormGroup = new FormGroup({
-    username: new FormControl(['', []]),
+    username: new FormControl('undefined', [Validators.required]),
+    password: new FormControl('undefined', [Validators.required]),
   });
 
-  ngOnInit(): void {
-    this.login = this.formBuilder.group({
-      username: ['', []],
-    });
-    this.authGuard.authenticate('', '');
-  }
+  ngOnInit(): void {}
   onLogin(): void {
     const x = false;
     // const subscription = new Observable(x => { if(this.authGuard.authenticate('', '') === true)},);
 
-    if (
-      this.username == 'admin' &&
-      this.password == 'admin' &&
-      this.isFormSubmitted
-    ) {
+    if (this.username == 'admin' && this.password == 'admin') {
       this.router.navigate(['/overview']);
     } else {
     }
   }
 
   onSubmit(): void {
-    this.submitted = true;
+    this.authGuard.authenticate(this.login.value).subscribe((resp) => {
+      if (resp === true) {
+        this.router.navigate(['/overview']);
+      } else {
+      }
+    });
   }
 
   private isFormSubmitted(): boolean {
     return this.submitted;
   }
 
-  getFormControl(username: string): any {}
+  getFormControl(name: string): FormControl {
+    return this.login.get(name) as FormControl;
+  }
 }

@@ -7,21 +7,24 @@ import { TransitService } from '../../service/transit.service';
 @Component({
   selector: 'app-routes',
   templateUrl: './transits.component.html',
-  styleUrls: ['./transits.component.css']
+  styleUrls: ['./transits.component.css'],
 })
 export class TransitsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
+
   dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
   private dataSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: TransitService) { }
+  constructor(private dataService: TransitService) {}
 
   ngOnInit(): void {
-    this.dataSubscription = this.dataService.fetchData()
-      .subscribe(data => this.dataSource = new MatTableDataSource(data));
+    this.dataSubscription = this.dataService
+      .fetchData()
+      .subscribe((data) => (this.dataSource = new MatTableDataSource(data)));
     this.dataSubscription.unsubscribe();
-    this.dataSubscription = this.dataService.fetchDataFromServer()
-      .subscribe(data => console.log('Data from server', data));
+    this.dataSubscription = this.dataService
+      .fetchDataFromServer()
+      .subscribe((data) => console.log('Data from server', data));
   }
 
   ngOnDestroy(): void {
@@ -34,5 +37,4 @@ export class TransitsComponent implements OnInit, OnDestroy {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
   }
-
 }
