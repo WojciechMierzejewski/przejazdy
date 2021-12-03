@@ -15,8 +15,6 @@ import {
 export class UserregComponent implements OnInit {
   submitted = false;
   registered = false;
-  errormessage = 'wrong input';
-
   userForm: FormGroup = new FormGroup({});
 
   constructor(public formBuilder: FormBuilder) { }
@@ -137,6 +135,18 @@ export class UserregComponent implements OnInit {
   }
 
   getErrorMessage(name: string): string {
-    return JSON.stringify(this.getFormControl(name)?.errors);
+    const fcErrors = this.getFormControl(name)?.errors;
+    if (fcErrors) {
+      const errors = Object.keys(fcErrors);
+      if (errors.includes('required')) {
+        return 'Wymagana wartość';
+      }
+      if (errors.includes('pattern')) {
+        return 'Nieprawidłowy format';
+      }
+      return JSON.stringify(this.getFormControl(name)?.errors);
+    }
+    return '';
   }
+
 }
