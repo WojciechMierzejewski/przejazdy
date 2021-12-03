@@ -123,7 +123,7 @@ export class UserregComponent implements OnInit {
   }
 
   getFormControl(name: string): FormControl {
-    return this.userForm.get('first_name') as FormControl;
+    return this.userForm.get(name) as FormControl;
   }
 
   clearFormControlValue(name: string): void {
@@ -137,6 +137,6 @@ export class UserregComponent implements OnInit {
   }
 
   getErrorMessage(name: string): string {
-    return JSON.stringify(this.userForm.get(name)?.errors);
+    return JSON.stringify(this.getFormControl(name)?.errors);
   }
 }
