@@ -42,7 +42,11 @@ export class TransitsComponent implements OnInit, OnDestroy {
   onClick(row: Transit): void {
     if (this.activeRow !== row) {
       this.activeRow = row;
+      console.log(row);
     }
-    console.log(row);
+  }
+
+  onDblClick(row: Transit): void {
+    console.log('double click:', row);
   }
 }
