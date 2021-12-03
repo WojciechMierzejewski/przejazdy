@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators,
+  Validators
 } from '@angular/forms';
 
 @Component({
@@ -19,7 +19,7 @@ export class UserregComponent implements OnInit {
 
   userForm: FormGroup = new FormGroup({});
 
-  constructor(public formBuilder: FormBuilder) {}
+  constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -136,7 +136,7 @@ export class UserregComponent implements OnInit {
     return fc.value !== null && fc.value !== undefined && fc.value !== '';
   }
 
-  getErrorMessage(): string {
-    return this.errormessage;
+  getErrorMessage(name: string): string {
+    return JSON.stringify(this.userForm.get(name)?.errors);
   }
 }

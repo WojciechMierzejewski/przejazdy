@@ -5,78 +5,42 @@
     <div class="row">
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>First name</mat-label>
-        <input
-          matInput
-          type="text"
-          [formControl]="getFormControl('first_name')"
-        />
-        <mat-error *ngIf="invalidFirstName">{{ getErrorMessage() }}</mat-error>
-        <button
-          *ngIf="hasValue('first_name')"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearFormControlValue('first_name')"
-        >
+        <input matInput type="text" [formControl]="getFormControl('first_name')" />
+        <mat-error *ngIf="invalidFirstName">{{ getErrorMessage('first_name') }}</mat-error>
+        <button *ngIf="hasValue('first_name')" matSuffix mat-icon-button aria-label="Clear"
+          (click)="clearFormControlValue('first_name')">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
 
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Second name</mat-label>
-        <input
-          matInput
-          type="text"
-          [formControl]="getFormControl('second_name')"
-        />
-        <mat-error *ngIf="invalidSecondName">{{ getErrorMessage() }}</mat-error>
-        <button
-          *ngIf="hasValue('second_name')"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearFormControlValue('second_name')"
-        >
+        <input matInput type="text" [formControl]="getFormControl('second_name')" />
+        <mat-error *ngIf="invalidSecondName">{{ getErrorMessage('second_name') }}</mat-error>
+        <button *ngIf="hasValue('second_name')" matSuffix mat-icon-button aria-label="Clear"
+          (click)="clearFormControlValue('second_name')">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
 
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Address</mat-label>
-        <input
-          matInput
-          type="text"
-          [formControl]="getFormControl('home_address')"
-        />
-        <mat-error *ngIf="invalidAddress">{{ getErrorMessage() }}</mat-error>
-        <button
-          *ngIf="hasValue('home_address')"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearFormControlValue('home_address')"
-        >
+        <input matInput type="text" [formControl]="getFormControl('home_address')" />
+        <mat-error *ngIf="invalidAddress">{{ getErrorMessage('home_address') }}</mat-error>
+        <button *ngIf="hasValue('home_address')" matSuffix mat-icon-button aria-label="Clear"
+          (click)="clearFormControlValue('home_address')">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
 
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Email address</mat-label>
-        <input
-          matInput
-          type="text"
-          [formControl]="getFormControl('email_address')"
-        />
+        <input matInput type="text" [formControl]="getFormControl('email_address')" />
         <mat-error *ngIf="invalidEmailAddress">{{
-          getErrorMessage()
-        }}</mat-error>
-        <button
-          *ngIf="hasValue('email_address')"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearFormControlValue('email_address')"
-        >
+          getErrorMessage('email_address')
+          }}</mat-error>
+        <button *ngIf="hasValue('email_address')" matSuffix mat-icon-button aria-label="Clear"
+          (click)="clearFormControlValue('email_address')">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
@@ -84,33 +48,19 @@
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Phone no.</mat-label>
         <input matInput type="text" [formControl]="getFormControl('phone')" />
-        <mat-error *ngIf="invalidPhoneNo">{{ getErrorMessage() }}</mat-error>
-        <button
-          *ngIf="hasValue('phone')"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearFormControlValue('phone')"
-        >
+        <mat-error *ngIf="invalidPhoneNo">{{ getErrorMessage('phone') }}</mat-error>
+        <button *ngIf="hasValue('phone')" matSuffix mat-icon-button aria-label="Clear"
+          (click)="clearFormControlValue('phone')">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
 
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Password</mat-label>
-        <input
-          matInput
-          type="pasword"
-          [formControl]="getFormControl('password')"
-        />
-        <mat-error *ngIf="invalidPassword">{{ getErrorMessage() }}</mat-error>
-        <button
-          *ngIf="hasValue('password')"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearFormControlValue('password')"
-        >
+        <input matInput type="pasword" [formControl]="getFormControl('password')" />
+        <mat-error *ngIf="invalidPassword">{{ getErrorMessage('password') }}</mat-error>
+        <button *ngIf="hasValue('password')" matSuffix mat-icon-button aria-label="Clear"
+          (click)="clearFormControlValue('password')">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
