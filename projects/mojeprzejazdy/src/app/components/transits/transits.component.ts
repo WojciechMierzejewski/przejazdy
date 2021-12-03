@@ -11,11 +11,12 @@ import { TransitService } from '../../service/transit.service';
 })
 export class TransitsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
-
   dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
+  activeRow?: Transit;
+
   private dataSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: TransitService) {}
+  constructor(private dataService: TransitService) { }
 
   ngOnInit(): void {
     this.dataSubscription = this.dataService
@@ -36,5 +37,12 @@ export class TransitsComponent implements OnInit, OnDestroy {
     if (this.dataSource) {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
+  }
+
+  onClick(row: Transit): void {
+    if (this.activeRow !== row) {
+      this.activeRow = row;
+    }
+    console.log(row);
   }
 }

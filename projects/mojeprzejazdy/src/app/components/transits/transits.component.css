@@ -6,3 +6,8 @@ table {
   font-size: 14px;
   width: 100%;
 }
+
+.active-row {
+  font-weight: bold;
+  background-color: lightgray;
+}
