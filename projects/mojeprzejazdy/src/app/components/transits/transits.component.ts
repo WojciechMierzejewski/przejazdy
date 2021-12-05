@@ -10,7 +10,7 @@ import { TransitService } from '../../service/transit.service';
   styleUrls: ['./transits.component.css'],
 })
 export class TransitsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
+  displayedColumns: string[] = ['id', 'points', 'valid', 'schedules', 'details', 'reserve'];
   dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
   activeRow?: Transit;
 
@@ -49,4 +49,13 @@ export class TransitsComponent implements OnInit, OnDestroy {
   onDblClick(row: Transit): void {
     console.log('double click:', row);
   }
+
+  onDetailsClick(row: Transit): void {
+    console.log('details clicked:', row);
+  }
+
+  onReserveClick(row: Transit): void {
+
+  }
+
 }
