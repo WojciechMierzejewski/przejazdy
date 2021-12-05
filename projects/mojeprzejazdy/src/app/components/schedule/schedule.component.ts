@@ -24,7 +24,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   onDodajClick(event: Event): void {
     const dialogRef = this.dialog.open(ScheduleDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    this.subscription = dialogRef.afterClosed().subscribe(result => {
       console.log(`Rezultat: ${result}`);
     });
   }

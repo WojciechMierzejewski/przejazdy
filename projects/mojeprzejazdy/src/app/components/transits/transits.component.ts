@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Transit } from '../../model/transit';
 import { TransitService } from '../../service/transit.service';
+import { TransitReserveComponent } from './transit-reserve/transit-reserve.component';
 
 @Component({
   selector: 'app-routes',
@@ -15,8 +17,10 @@ export class TransitsComponent implements OnInit, OnDestroy {
   activeRow?: Transit;
 
   private dataSubscription: Subscription = Subscription.EMPTY;
+  private dialogSubscription = Subscription.EMPTY;
 
-  constructor(private dataService: TransitService) { }
+  constructor(private dataService: TransitService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataSubscription = this.dataService
@@ -30,6 +34,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
+    this.dialogSubscription.unsubscribe();
   }
 
   applyFilter(event: Event) {
@@ -55,7 +60,11 @@ export class TransitsComponent implements OnInit, OnDestroy {
   }
 
   onReserveClick(row: Transit): void {
+    const dialogRef = this.dialog.open(TransitReserveComponent);
 
+    this.dialogSubscription = dialogRef.afterClosed().subscribe(result => {
+      console.log(`Rezultat: ${result}`);
+    });
   }
 
 }

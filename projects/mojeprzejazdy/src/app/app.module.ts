@@ -18,6 +18,7 @@ import { ScheduleDialogComponent } from './components/schedule/schedule-dialog/s
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
+import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { UserregComponent } from './components/userreg/userreg.component';
     NotfoundComponent,
     ScheduleDialogComponent,
     TransitsComponent,
+    TransitReserveComponent,
   ],
   imports: [
     BrowserModule,
