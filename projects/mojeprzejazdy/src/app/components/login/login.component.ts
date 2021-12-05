@@ -3,10 +3,10 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthGuard } from '../../service/auth.guard';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +15,10 @@ import { AuthGuard } from '../../service/auth.guard';
 })
 export class LoginComponent implements OnInit {
   constructor(
-    private authGuard: AuthGuard,
+    private authService: AuthService,
     private router: Router,
     public formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   username = '';
   password = '';
@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl('undefined', [Validators.required]),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+
   onLogin(): void {
     const x = false;
     // const subscription = new Observable(x => { if(this.authGuard.authenticate('', '') === true)},);
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authGuard.authenticate(this.login.value).subscribe((resp) => {
+    this.authService.authenticate(this.login.value).subscribe((resp) => {
       if (resp === true) {
         this.router.navigate(['/overview']);
       } else {
