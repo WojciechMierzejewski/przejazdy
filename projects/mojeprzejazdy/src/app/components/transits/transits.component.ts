@@ -16,7 +16,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
 
   private dataSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: TransitService) { }
+  constructor(private dataService: TransitService) {}
 
   ngOnInit(): void {
     this.dataSubscription = this.dataService

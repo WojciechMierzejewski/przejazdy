@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "https://mighty-depths-23732.herokuapp.com",
+        "target": "https://awps-dev.herokuapp.com/",
         "secure": false,
         "pathRewrite": {
             "^/api/": "/"
