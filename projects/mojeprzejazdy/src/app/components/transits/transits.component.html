@@ -10,6 +10,7 @@
     <td mat-cell *matCellDef="let route">{{ route.id }}</td>
   </ng-container>
 
+<<<<<<< HEAD
   <!-- Name Column -->
   <ng-container matColumnDef="points">
     <th mat-header-cell *matHeaderCellDef>Punkty</th>
@@ -44,3 +45,68 @@
     </td>
   </tr>
 </table>
+=======
+    <ng-container matColumnDef="id">
+        <th mat-header-cell
+            *matHeaderCellDef> ID </th>
+        <td mat-cell
+            *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="points">
+        <th mat-header-cell
+            *matHeaderCellDef> Punkty </th>
+        <td mat-cell
+            *matCellDef="let row"> {{row.points}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valid">
+        <th mat-header-cell
+            *matHeaderCellDef> Aktualna </th>
+        <td mat-cell
+            *matCellDef="let row"> {{row.valid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="schedules">
+        <th mat-header-cell
+            *matHeaderCellDef> Kiedy </th>
+        <td mat-cell
+            *matCellDef="let row"> {{row.schedules}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+        <th mat-header-cell
+            *matHeaderCellDef> </th>
+        <td mat-cell
+            *matCellDef="let row">
+            <button mat-stroked-button
+                    (click)="onDetailsClick(row)">Details</button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reserve">
+        <th mat-header-cell
+            *matHeaderCellDef> </th>
+        <td mat-cell
+            *matCellDef="let row">
+            <button mat-stroked-button
+                    (click)="onReserveClick(row)">Reserve</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row
+        *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+        [class.active-row]="row===activeRow"
+        (click)="onClick(row)"
+        (dblclick)="onDblClick(row)"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row"
+        *matNoDataRow>
+        <td class="mat-cell"
+            colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+</table>
+>>>>>>> a0d64954d92b54065090fc4fa6e67b62a0064eae

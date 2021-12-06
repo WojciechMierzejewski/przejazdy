@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Transit } from '../../model/transit';
 import { TransitService } from '../../service/transit.service';
+import { TransitReserveComponent } from './transit-reserve/transit-reserve.component';
 
 @Component({
   selector: 'app-routes',
@@ -10,13 +12,19 @@ import { TransitService } from '../../service/transit.service';
   styleUrls: ['./transits.component.css'],
 })
 export class TransitsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
+  displayedColumns: string[] = ['id', 'points', 'valid', 'schedules', 'details', 'reserve'];
   dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
   activeRow?: Transit;
 
   private dataSubscription: Subscription = Subscription.EMPTY;
+  private dialogSubscription = Subscription.EMPTY;
 
+<<<<<<< HEAD
   constructor(private dataService: TransitService) {}
+=======
+  constructor(private dataService: TransitService,
+    private dialog: MatDialog) { }
+>>>>>>> a0d64954d92b54065090fc4fa6e67b62a0064eae
 
   ngOnInit(): void {
     this.dataSubscription = this.dataService
@@ -30,6 +38,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
+    this.dialogSubscription.unsubscribe();
   }
 
   applyFilter(event: Event) {
@@ -49,4 +58,17 @@ export class TransitsComponent implements OnInit, OnDestroy {
   onDblClick(row: Transit): void {
     console.log('double click:', row);
   }
+
+  onDetailsClick(row: Transit): void {
+    console.log('details clicked:', row);
+  }
+
+  onReserveClick(row: Transit): void {
+    const dialogRef = this.dialog.open(TransitReserveComponent);
+
+    this.dialogSubscription = dialogRef.afterClosed().subscribe(result => {
+      console.log(`Rezultat: ${result}`);
+    });
+  }
+
 }
