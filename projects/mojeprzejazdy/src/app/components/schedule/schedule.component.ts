@@ -6,16 +6,14 @@ import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.compo
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.css']
+  styleUrls: ['./schedule.component.css'],
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
-
   private subscription = Subscription.EMPTY;
 
   constructor(private dialog: MatDialog) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -23,10 +21,9 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   onDodajClick(event: Event): void {
     const dialogRef = this.dialog.open(ScheduleDialogComponent);
-
+    this.subscription.unsubscribe();
     this.subscription = dialogRef.afterClosed().subscribe(result => {
       console.log(`Rezultat: ${result}`);
     });
   }
-
 }
