@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -17,9 +19,9 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ScheduleDialogComponent } from './components/schedule/schedule-dialog/schedule-dialog.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
-import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,8 +48,10 @@ import { TransitReserveComponent } from './components/transits/transit-reserve/t
     MatCardModule,
     MatToolbarModule,
     HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
