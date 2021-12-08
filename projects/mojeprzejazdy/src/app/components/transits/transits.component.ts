@@ -19,12 +19,8 @@ export class TransitsComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = Subscription.EMPTY;
   private dialogSubscription = Subscription.EMPTY;
 
-<<<<<<< HEAD
-  constructor(private dataService: TransitService) {}
-=======
   constructor(private dataService: TransitService,
     private dialog: MatDialog) { }
->>>>>>> a0d64954d92b54065090fc4fa6e67b62a0064eae
 
   ngOnInit(): void {
     this.dataSubscription = this.dataService
