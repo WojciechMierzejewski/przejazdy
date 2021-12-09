@@ -2,6 +2,7 @@
     <mat-form-field appearance="fill">
         <mat-label>Choose a date</mat-label>
         <input matInput
+               [formControl]="getFormControl('date')"
                [matDatepicker]="picker">
         <mat-datepicker-toggle matSuffix
                                [for]="picker"></mat-datepicker-toggle>
@@ -12,6 +13,12 @@
                     appearance="fill">
         <mat-label>Time</mat-label>
         <input type="time"
+               [formControl]="getFormControl('time')"
                matInput>
     </mat-form-field>
+
+    <button mat-button
+            (click)="onClick()">OK</button>
+    <button mat-button
+            mat-dialog-close>Anuluj</button>
 </div>

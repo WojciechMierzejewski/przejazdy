@@ -1,7 +1,8 @@
+import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
+import { ScheduleDialogComponent, ScheduleDialogData } from './schedule-dialog/schedule-dialog.component';
 
 @Component({
   selector: 'app-schedule',
@@ -20,7 +21,13 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   onDodajClick(event: Event): void {
-    const dialogRef = this.dialog.open(ScheduleDialogComponent);
+    const dialogConfig: MatDialogConfig<ScheduleDialogData> = {
+      data: {
+        date: new Date(),
+        time: formatDate(new Date(), 'HH:mm', 'en-us')
+      }
+    };
+    const dialogRef = this.dialog.open(ScheduleDialogComponent, dialogConfig);
     this.subscription.unsubscribe();
     this.subscription = dialogRef.afterClosed().subscribe(result => {
       console.log(`Rezultat: ${result}`);
