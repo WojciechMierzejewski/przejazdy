@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+export interface ScheduleDialogData {
+  date: Date;
+  time: string;
+}
 
 @Component({
   selector: 'app-schedule-dialog',
@@ -7,9 +14,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleDialogComponent implements OnInit {
 
-  constructor() { }
+  formGroup: FormGroup = new FormGroup({
+    date: new FormControl(),
+    time: new FormControl()
+  });
+
+  constructor(@Inject(MAT_DIALOG_DATA) private data: ScheduleDialogData) {
+    this.formGroup.patchValue(this.data);
+  }
 
   ngOnInit(): void {
   }
 
+  getFormControl(name: string): FormControl {
+    return this.formGroup.get(name) as FormControl;
+  }
+
+  onClick(): void {
+    console.log(this.formGroup.value);
+  }
 }
