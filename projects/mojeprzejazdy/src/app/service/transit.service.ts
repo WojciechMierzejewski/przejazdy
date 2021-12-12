@@ -26,6 +26,6 @@ export class TransitService {
   }
 
   fetchDataFromServer(): Observable<any> {
-    return this.httpClient.get('/api/');
+    return this.httpClient.get('');
   }
 }
