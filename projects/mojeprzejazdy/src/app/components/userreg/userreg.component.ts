@@ -4,8 +4,9 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators
+  Validators,
 } from '@angular/forms';
+import { Person } from '../../model/person';
 
 @Component({
   selector: 'app-userreg',
@@ -17,22 +18,31 @@ export class UserregComponent implements OnInit {
   registered = false;
   userForm: FormGroup = new FormGroup({});
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder, public person: Person) {}
 
   ngOnInit() {
+    this.person = new Person(this.userForm.value);
     this.userForm = this.formBuilder.group({
-      first_name: [
+      name: [
         '',
         [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$')],
       ],
-      second_name: [
+      surname: [
         '',
         [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$')],
       ],
-      home_address: ['', [Validators.required]],
-      email_address: ['', [Validators.required, Validators.email]],
+      address: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('^[1-9][0-9]*$')]],
       password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+        ],
+      ],
+      login: [
         '',
         [
           Validators.required,
@@ -45,7 +55,7 @@ export class UserregComponent implements OnInit {
 
   invalidFirstName(): boolean {
     const result =
-      !this.isFormControlValid(this.userForm.controls.first_name.errors) &&
+      !this.isFormControlValid(this.userForm.controls.name.errors) &&
       !this.isFormSubmitted();
     console.log('invalid first name', result);
     return result;
@@ -53,7 +63,7 @@ export class UserregComponent implements OnInit {
 
   invalidSecondName(): boolean {
     const result =
-      !this.isFormControlValid(this.userForm.controls.second_name.errors) &&
+      !this.isFormControlValid(this.userForm.controls.surname.errors) &&
       !this.isFormSubmitted();
     console.log('invalid sname', result);
     return result;
@@ -61,7 +71,7 @@ export class UserregComponent implements OnInit {
 
   invalidAddress(): boolean {
     const result =
-      !this.isFormControlValid(this.userForm.controls.home_address.errors) &&
+      !this.isFormControlValid(this.userForm.controls.address.errors) &&
       !this.isFormSubmitted();
     console.log('invalidAddress:', result);
     return result;
@@ -69,7 +79,7 @@ export class UserregComponent implements OnInit {
 
   invalidEmailAddress(): boolean {
     const result =
-      !this.isFormControlValid(this.userForm.controls.email_address.errors) &&
+      !this.isFormControlValid(this.userForm.controls.email.errors) &&
       !this.isFormSubmitted();
     console.log('invalidEmail:', result);
     return result;
@@ -117,6 +127,7 @@ export class UserregComponent implements OnInit {
       console.log('wrong data');
     } else {
       this.registered = true;
+      console.log(this.userForm);
     }
   }
 
@@ -148,5 +159,4 @@ export class UserregComponent implements OnInit {
     }
     return '';
   }
-
 }

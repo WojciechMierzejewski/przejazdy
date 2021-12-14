@@ -5,20 +5,16 @@
     <div class="row">
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>First name</mat-label>
-        <input
-          matInput
-          type="text"
-          [formControl]="getFormControl('first_name')"
-        />
+        <input matInput type="text" [formControl]="getFormControl('name')" />
         <mat-error *ngIf="invalidFirstName">{{
-          getErrorMessage("first_name")
+          getErrorMessage("name")
         }}</mat-error>
         <button
-          *ngIf="hasValue('first_name')"
+          *ngIf="hasValue('name')"
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="clearFormControlValue('first_name')"
+          (click)="clearFormControlValue('name')"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -26,20 +22,16 @@
 
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Second name</mat-label>
-        <input
-          matInput
-          type="text"
-          [formControl]="getFormControl('second_name')"
-        />
+        <input matInput type="text" [formControl]="getFormControl('surname')" />
         <mat-error *ngIf="invalidSecondName">{{
-          getErrorMessage("second_name")
+          getErrorMessage("surname")
         }}</mat-error>
         <button
-          *ngIf="hasValue('second_name')"
+          *ngIf="hasValue('surname')"
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="clearFormControlValue('second_name')"
+          (click)="clearFormControlValue('surname')"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -47,20 +39,16 @@
 
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Address</mat-label>
-        <input
-          matInput
-          type="text"
-          [formControl]="getFormControl('home_address')"
-        />
+        <input matInput type="text" [formControl]="getFormControl('address')" />
         <mat-error *ngIf="invalidAddress">{{
-          getErrorMessage("home_address")
+          getErrorMessage("address")
         }}</mat-error>
         <button
-          *ngIf="hasValue('home_address')"
+          *ngIf="hasValue('address')"
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="clearFormControlValue('home_address')"
+          (click)="clearFormControlValue('address')"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -68,20 +56,16 @@
 
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Email address</mat-label>
-        <input
-          matInput
-          type="text"
-          [formControl]="getFormControl('email_address')"
-        />
+        <input matInput type="text" [formControl]="getFormControl('email')" />
         <mat-error *ngIf="invalidEmailAddress">{{
-          getErrorMessage("email_address")
+          getErrorMessage("email")
         }}</mat-error>
         <button
-          *ngIf="hasValue('email_address')"
+          *ngIf="hasValue('email')"
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="clearFormControlValue('email_address')"
+          (click)="clearFormControlValue('email')"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -108,7 +92,7 @@
         <mat-label>Password</mat-label>
         <input
           matInput
-          type="pasword"
+          type="password"
           [formControl]="getFormControl('password')"
         />
         <mat-error *ngIf="invalidPassword">{{
@@ -125,14 +109,31 @@
         </button>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Login</mat-label>
+        <input matInput type="login" [formControl]="getFormControl('login')" />
+        <mat-error *ngIf="invalidPassword">{{
+          getErrorMessage("login")
+        }}</mat-error>
+        <button
+          *ngIf="hasValue('login')"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearFormControlValue('login')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="fill">
         <mat-label>Choose an option</mat-label>
         <select matNativeControl>
           <option value="" selected></option>
           <option value="passenger">Passenger</option>
           <option value="driver">Driver</option>
         </select>
-      </mat-form-field>
+      </mat-form-field> -->
       <div class="form-group">
         <br />
         <button type="submit" class="btn btn-primary">Submit</button>

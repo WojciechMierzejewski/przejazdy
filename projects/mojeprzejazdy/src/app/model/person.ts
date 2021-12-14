@@ -10,3 +10,7 @@ export interface Person {
   login?: string;
   password: string;
 }
+
+export class Person {
+  public constructor(initialValues: Partial<Person> = {}) {}
+}

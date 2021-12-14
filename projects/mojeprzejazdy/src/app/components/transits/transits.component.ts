@@ -12,15 +12,14 @@ import { TransitReserveComponent } from './transit-reserve/transit-reserve.compo
   styleUrls: ['./transits.component.css'],
 })
 export class TransitsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['id', 'points', 'valid', 'schedules', 'details', 'reserve'];
+  displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
   dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
   activeRow?: Transit;
 
   private dataSubscription: Subscription = Subscription.EMPTY;
   private dialogSubscription = Subscription.EMPTY;
 
-  constructor(private dataService: TransitService,
-    private dialog: MatDialog) { }
+  constructor(private dataService: TransitService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.dataSubscription = this.dataService
@@ -62,9 +61,8 @@ export class TransitsComponent implements OnInit, OnDestroy {
   onReserveClick(row: Transit): void {
     const dialogRef = this.dialog.open(TransitReserveComponent);
 
-    this.dialogSubscription = dialogRef.afterClosed().subscribe(result => {
+    this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {
       console.log(`Rezultat: ${result}`);
     });
   }
-
 }

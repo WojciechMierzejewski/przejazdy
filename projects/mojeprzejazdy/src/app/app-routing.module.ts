@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
 import { AuthGuard } from './service/auth.guard';
@@ -42,6 +43,21 @@ const routes: Routes = [
           {
             path: 'transits',
             component: TransitsComponent,
+            children: [
+              {
+                path: '',
+                redirectTo: 'transit-reserve',
+                pathMatch: 'full',
+              },
+              {
+                path: 'transit-reserve',
+                component: TransitReserveComponent,
+              },
+              {
+                path: 'transits',
+                component: TransitsComponent,
+              },
+            ],
           },
         ],
       },
