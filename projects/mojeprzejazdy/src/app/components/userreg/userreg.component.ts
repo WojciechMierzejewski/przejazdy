@@ -6,6 +6,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Person } from '../../model/person';
 import { EnrollmentService } from '../../service/enrollment.service';
 @Injectable({
@@ -20,11 +21,13 @@ export class UserregComponent implements OnInit {
   submitted = false;
   registered = false;
   userForm: FormGroup = new FormGroup({});
+  private dataSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
     public formBuilder: FormBuilder,
     public person: Person,
-    private enrollmentService: EnrollmentService
+    private enrollmentService: EnrollmentService,
+    private dataService: EnrollmentService
   ) {}
 
   ngOnInit() {
@@ -136,10 +139,11 @@ export class UserregComponent implements OnInit {
       this.registered = true;
       console.log(this.userForm);
     }
-    this.enrollmentService.enroll(this.person).subscribe(
-      (data) => console.log('successfully written to backend'),
-      (error) => console.error('error')
-    );
+    this.dataSubscription = this.dataService
+      .enroll(this.person)
+      .subscribe((data) => {
+        this.person.address = this.dataService.address;
+      });
   }
 
   getFormControl(name: string): FormControl {
@@ -169,5 +173,8 @@ export class UserregComponent implements OnInit {
       return JSON.stringify(this.getFormControl(name)?.errors);
     }
     return '';
+  }
+  ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
   }
 }

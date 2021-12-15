@@ -24,7 +24,7 @@
         <mat-label>Second name</mat-label>
         <input matInput type="text" [formControl]="getFormControl('surname')" />
         <mat-error *ngIf="invalidSecondName">{{
-          getErrorMessage("surname")
+          getErrorMessage("name")
         }}</mat-error>
         <button
           *ngIf="hasValue('surname')"
@@ -41,7 +41,7 @@
         <mat-label>Address</mat-label>
         <input matInput type="text" [formControl]="getFormControl('address')" />
         <mat-error *ngIf="invalidAddress">{{
-          getErrorMessage("address")
+          getErrorMessage("name")
         }}</mat-error>
         <button
           *ngIf="hasValue('address')"
@@ -58,7 +58,7 @@
         <mat-label>Email address</mat-label>
         <input matInput type="text" [formControl]="getFormControl('email')" />
         <mat-error *ngIf="invalidEmailAddress">{{
-          getErrorMessage("email")
+          getErrorMessage("name")
         }}</mat-error>
         <button
           *ngIf="hasValue('email')"
@@ -75,7 +75,7 @@
         <mat-label>Phone no.</mat-label>
         <input matInput type="text" [formControl]="getFormControl('phone')" />
         <mat-error *ngIf="invalidPhoneNo">{{
-          getErrorMessage("phone")
+          getErrorMessage("name")
         }}</mat-error>
         <button
           *ngIf="hasValue('phone')"
@@ -96,7 +96,7 @@
           [formControl]="getFormControl('password')"
         />
         <mat-error *ngIf="invalidPassword">{{
-          getErrorMessage("password")
+          getErrorMessage("name")
         }}</mat-error>
         <button
           *ngIf="hasValue('password')"
@@ -113,7 +113,7 @@
         <mat-label>Login</mat-label>
         <input matInput type="login" [formControl]="getFormControl('login')" />
         <mat-error *ngIf="invalidPassword">{{
-          getErrorMessage("login")
+          getErrorMessage("name")
         }}</mat-error>
         <button
           *ngIf="hasValue('login')"
