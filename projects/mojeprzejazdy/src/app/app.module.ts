@@ -22,6 +22,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
+
 @NgModule({
   declarations: [
     AppComponent,

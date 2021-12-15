@@ -17,4 +17,8 @@ export class PersonService {
   fetchDataFromServer(): Observable<any> {
     return this.httpClient.get('/api/user/getlist');
   }
+
+  putDataToServer(): Observable<any> {
+    return this.httpClient.get('/api/user/set');
+  }
 }

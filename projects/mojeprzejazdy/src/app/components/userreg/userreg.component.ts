@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Person } from '../../model/person';
-
+import { EnrollmentServcie } from '../../service/enrollment.service';
 @Component({
   selector: 'app-userreg',
   templateUrl: './userreg.component.html',
@@ -18,7 +18,11 @@ export class UserregComponent implements OnInit {
   registered = false;
   userForm: FormGroup = new FormGroup({});
 
-  constructor(public formBuilder: FormBuilder, public person: Person) {}
+  constructor(
+    public formBuilder: FormBuilder,
+    public person: Person,
+    private enrollmentService: EnrollmentServcie
+  ) {}
 
   ngOnInit() {
     this.person = new Person(this.userForm.value);
@@ -127,8 +131,12 @@ export class UserregComponent implements OnInit {
       console.log('wrong data');
     } else {
       this.registered = true;
-      console.log(this.userForm);
+      console.log(this.person);
     }
+    this.enrollmentService.enroll(this.person).subscribe(
+      (data) => console.log('successfully written to backend'),
+      (error) => console.error('error')
+    );
   }
 
   getFormControl(name: string): FormControl {
