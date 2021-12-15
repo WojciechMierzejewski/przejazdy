@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Person } from '../../model/person';
-import { EnrollmentServcie } from '../../service/enrollment.service';
+import { EnrollmentService } from '../../service/enrollment.service';
 @Component({
   selector: 'app-userreg',
   templateUrl: './userreg.component.html',
@@ -21,7 +21,7 @@ export class UserregComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public person: Person,
-    private enrollmentService: EnrollmentServcie
+    private enrollmentService: EnrollmentService
   ) {}
 
   ngOnInit() {
