@@ -1,5 +1,5 @@
 <p>login works!</p>
-<form [formGroup]="login" (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
       <mat-card-header>
@@ -10,8 +10,8 @@
           <input
             matInput
             type="text"
-            id="username"
-            name="username"
+            id="login"
+            name="login"
             [formControl]="getFormControl('username')"
             placeholder="username"
           />

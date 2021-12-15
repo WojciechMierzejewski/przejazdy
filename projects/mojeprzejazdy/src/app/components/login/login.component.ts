@@ -3,7 +3,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
@@ -18,30 +18,31 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     public formBuilder: FormBuilder
-  ) { }
+  ) {}
 
-  username = '';
+  login = '';
   password = '';
   submitted = false;
-  login: FormGroup = new FormGroup({
-    username: new FormControl('undefined', [Validators.required]),
+  loginForm: FormGroup = new FormGroup({
+    login: new FormControl('undefined', [Validators.required]),
     password: new FormControl('undefined', [Validators.required]),
   });
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  onLogin(): void {
-    const x = false;
-    // const subscription = new Observable(x => { if(this.authGuard.authenticate('', '') === true)},);
+  // onLogin(): void {
+  //   const x = false;
+  // const subscription = new Observable(x => { if(this.authGuard.authenticate('', '') === true)},);
 
-    if (this.username == 'admin' && this.password == 'admin') {
-      this.router.navigate(['/overview']);
-    } else {
-    }
-  }
+  //   if (this.login == 'admin' && this.password == 'admin') {
+  //     this.router.navigate(['/overview']);
+  //   } else {
+  //   }
+  // }
 
   onSubmit(): void {
-    this.authService.authenticate(this.login.value).subscribe((resp) => {
+    this.submitted = true;
+    this.authService.authenticate(this.loginForm.value).subscribe((resp) => {
       if (resp === true) {
         this.router.navigate(['/overview']);
       } else {

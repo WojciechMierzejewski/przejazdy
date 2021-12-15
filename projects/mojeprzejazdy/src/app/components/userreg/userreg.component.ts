@@ -139,11 +139,7 @@ export class UserregComponent implements OnInit {
       this.registered = true;
       console.log(this.userForm);
     }
-    this.dataSubscription = this.dataService
-      .enroll(this.person)
-      .subscribe((data) => {
-        this.person.address = this.dataService.address;
-      });
+    this.dataSubscription = this.dataService.enroll(this.person).subscribe();
   }
 
   getFormControl(name: string): FormControl {
