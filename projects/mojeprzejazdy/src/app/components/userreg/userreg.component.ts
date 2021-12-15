@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,6 +8,9 @@ import {
 } from '@angular/forms';
 import { Person } from '../../model/person';
 import { EnrollmentService } from '../../service/enrollment.service';
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'app-userreg',
   templateUrl: './userreg.component.html',
@@ -131,7 +134,7 @@ export class UserregComponent implements OnInit {
       console.log('wrong data');
     } else {
       this.registered = true;
-      console.log(this.person);
+      console.log(this.userForm);
     }
     this.enrollmentService.enroll(this.person).subscribe(
       (data) => console.log('successfully written to backend'),
