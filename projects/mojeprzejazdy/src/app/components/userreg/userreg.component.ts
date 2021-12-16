@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Person } from '../../model/person';
@@ -21,14 +21,14 @@ export class UserregComponent implements OnInit {
   submitted = false;
   registered = false;
   userForm: FormGroup = new FormGroup({});
+  person: Person = new Person();
+
   private dataSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
     public formBuilder: FormBuilder,
-    public person: Person,
-    private enrollmentService: EnrollmentService,
     private dataService: EnrollmentService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.person = new Person(this.userForm.value);

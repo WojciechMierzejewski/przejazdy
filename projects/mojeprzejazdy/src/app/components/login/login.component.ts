@@ -3,7 +3,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     public formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   login = '';
   password = '';
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('undefined', [Validators.required]),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   // onLogin(): void {
   //   const x = false;
@@ -55,6 +55,6 @@ export class LoginComponent implements OnInit {
   }
 
   getFormControl(name: string): FormControl {
-    return this.login.get(name) as FormControl;
+    return this.loginForm.get(name) as FormControl;
   }
 }
