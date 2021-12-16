@@ -31,7 +31,6 @@ export class UserregComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.person = new Person(this.userForm.value);
     this.userForm = this.formBuilder.group({
       name: [
         '',
@@ -138,8 +137,10 @@ export class UserregComponent implements OnInit {
     } else {
       this.registered = true;
       console.log(this.userForm);
+      this.person = new Person(this.userForm.value);
+      this.dataSubscription.unsubscribe();
+      this.dataSubscription = this.dataService.enroll(this.userForm.value).subscribe();
     }
-    this.dataSubscription = this.dataService.enroll(this.person).subscribe();
   }
 
   getFormControl(name: string): FormControl {
@@ -170,6 +171,7 @@ export class UserregComponent implements OnInit {
     }
     return '';
   }
+
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
   }
