@@ -6,6 +6,7 @@ import {
   ValidationErrors,
   Validators
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { Person } from '../../model/person';
 import { EnrollmentService } from '../../service/enrollment.service';
@@ -27,7 +28,8 @@ export class UserregComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private dataService: EnrollmentService
+    private dataService: EnrollmentService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -133,7 +135,7 @@ export class UserregComponent implements OnInit {
   onSubmit(): void {
     this.submitted = true;
     if (this.userForm.invalid == true) {
-      console.log('wrong data');
+      this.snackBar.open('wrong data', 'close');
     } else {
       this.registered = true;
       console.log(this.userForm);
