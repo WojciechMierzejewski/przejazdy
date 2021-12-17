@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
@@ -30,7 +30,7 @@ export class UserregComponent implements OnInit {
     public formBuilder: FormBuilder,
     private dataService: EnrollmentService,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -42,7 +42,7 @@ export class UserregComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$')],
       ],
-      address: ['', [Validators.required]],
+      // address: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('^[1-9][0-9]*$')]],
       password: [
@@ -80,13 +80,13 @@ export class UserregComponent implements OnInit {
     return result;
   }
 
-  invalidAddress(): boolean {
-    const result =
-      !this.isFormControlValid(this.userForm.controls.address.errors) &&
-      !this.isFormSubmitted();
-    console.log('invalidAddress:', result);
-    return result;
-  }
+  // invalidAddress(): boolean {
+  //   const result =
+  //     !this.isFormControlValid(this.userForm.controls.address.errors) &&
+  //     !this.isFormSubmitted();
+  //   console.log('invalidAddress:', result);
+  //   return result;
+  // }
 
   invalidEmailAddress(): boolean {
     const result =
@@ -141,7 +141,9 @@ export class UserregComponent implements OnInit {
       console.log(this.userForm);
       this.person = new Person(this.userForm.value);
       this.dataSubscription.unsubscribe();
-      this.dataSubscription = this.dataService.enroll(this.userForm.value).subscribe();
+      this.dataSubscription = this.dataService
+        .enroll(this.userForm.value)
+        .subscribe();
     }
   }
 
