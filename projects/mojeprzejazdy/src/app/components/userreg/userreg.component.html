@@ -1,6 +1,14 @@
 <h3>Moje Przejazdy</h3>
 <h4>User registration forms</h4>
-<form [formGroup]="userForm"
+
+<div *ngIf="loading"
+     class="progress-spinner">
+  <mat-progress-spinner [mode]="'indeterminate'">
+  </mat-progress-spinner>
+</div>
+
+<form *ngIf="!loading"
+      [formGroup]="userForm"
       (ngSubmit)="onSubmit()">
   <div class="container-fluid">
     <div class="row">

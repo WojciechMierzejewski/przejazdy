@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
@@ -19,6 +19,7 @@ import { EnrollmentService } from '../../service/enrollment.service';
   styleUrls: ['./userreg.component.css'],
 })
 export class UserregComponent implements OnInit {
+  loading: boolean = false;
   submitted = false;
   registered = false;
   userForm: FormGroup = new FormGroup({});
@@ -30,7 +31,7 @@ export class UserregComponent implements OnInit {
     public formBuilder: FormBuilder,
     private dataService: EnrollmentService,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -138,12 +139,22 @@ export class UserregComponent implements OnInit {
       this.snackBar.open('wrong data', 'close');
     } else {
       this.registered = true;
+      this.loading = true;
       console.log(this.userForm);
       this.person = new Person(this.userForm.value);
       this.dataSubscription.unsubscribe();
       this.dataSubscription = this.dataService
         .enroll(this.userForm.value)
-        .subscribe();
+        .subscribe({
+          next: () => {
+            this.snackBar.open('succesfully saved', 'close');
+            this.loading = false;
+          },
+          error: err => {
+            this.snackBar.open(err, 'close');
+            this.loading = false;
+          }
+        });
     }
   }
 
