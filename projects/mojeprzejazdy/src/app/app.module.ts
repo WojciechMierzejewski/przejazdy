@@ -24,6 +24,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
+import { InputTextComponent } from './components/common/inputs/input-text/input-text.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { UserregComponent } from './components/userreg/userreg.component';
     ScheduleDialogComponent,
     TransitsComponent,
     TransitReserveComponent,
+    InputTextComponent,
   ],
   imports: [
     BrowserModule,
