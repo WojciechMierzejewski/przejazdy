@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
@@ -31,7 +31,7 @@ export class UserregComponent implements OnInit {
     public formBuilder: FormBuilder,
     private dataService: EnrollmentService,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -73,13 +73,13 @@ export class UserregComponent implements OnInit {
     return result;
   }
 
-  invalidSecondName(): boolean {
-    const result =
-      !this.isFormControlValid(this.userForm.controls.surname.errors) &&
-      !this.isFormSubmitted();
-    console.log('invalid sname', result);
-    return result;
-  }
+  // invalidSecondName(): boolean {
+  //   const result =
+  //     !this.isFormControlValid(this.userForm.controls.name.errors) &&
+  //     !this.isFormSubmitted();
+  //   console.log('invalid sname', result);
+  //   return result;
+  // }
 
   // invalidAddress(): boolean {
   //   const result =
@@ -89,21 +89,21 @@ export class UserregComponent implements OnInit {
   //   return result;
   // }
 
-  invalidEmailAddress(): boolean {
-    const result =
-      !this.isFormControlValid(this.userForm.controls.email.errors) &&
-      !this.isFormSubmitted();
-    console.log('invalidEmail:', result);
-    return result;
-  }
+  // invalidEmailAddress(): boolean {
+  //   const result =
+  //     !this.isFormControlValid(this.userForm.controls.email.errors) &&
+  //     !this.isFormSubmitted();
+  //   console.log('invalidEmail:', result);
+  //   return result;
+  // }
 
-  invalidPhoneNo(): boolean {
-    const result =
-      !this.isFormControlValid(this.userForm.controls.phone.errors) &&
-      !this.isFormSubmitted();
-    console.log('invalidPhone:', result);
-    return result;
-  }
+  // invalidPhoneNo(): boolean {
+  //   const result =
+  //     !this.isFormControlValid(this.userForm.controls.phone.errors) &&
+  //     !this.isFormSubmitted();
+  //   console.log('invalidPhone:', result);
+  //   return result;
+  // }
 
   // isPhoneValid(errors: ValidationErrors | null): boolean {
   //   return this.validatePhone(errors);
@@ -113,13 +113,13 @@ export class UserregComponent implements OnInit {
   //   return errors === null;
   // }
 
-  invalidPassword(): boolean {
-    const result =
-      !this.isFormControlValid(this.userForm.controls.password.errors) &&
-      !this.isFormSubmitted();
-    console.log('invalidPasswd:', result);
-    return result;
-  }
+  // invalidPassword(): boolean {
+  //   const result =
+  //     !this.isFormControlValid(this.userForm.controls.password.errors) &&
+  //     !this.isFormSubmitted();
+  //   console.log('invalidPasswd:', result);
+  //   return result;
+  // }
 
   isFormControlValid(errors: ValidationErrors | null): boolean {
     return this.validateFormControl(errors);
@@ -150,10 +150,10 @@ export class UserregComponent implements OnInit {
             this.snackBar.open('succesfully saved', 'close');
             this.loading = false;
           },
-          error: err => {
+          error: (err) => {
             this.snackBar.open(err, 'close');
             this.loading = false;
-          }
+          },
         });
     }
   }
@@ -174,12 +174,14 @@ export class UserregComponent implements OnInit {
 
   getErrorMessage(name: string): string {
     const fcErrors = this.getFormControl(name)?.errors;
+    console.log(fcErrors);
     if (fcErrors) {
       const errors = Object.keys(fcErrors);
       if (errors.includes('required')) {
         return 'Wymagana wartość';
       }
       if (errors.includes('pattern')) {
+        console.log('tu jestem2');
         return 'Nieprawidłowy format';
       }
       return JSON.stringify(this.getFormControl(name)?.errors);
