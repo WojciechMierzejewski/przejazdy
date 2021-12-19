@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
@@ -31,7 +31,7 @@ export class UserregComponent implements OnInit {
     public formBuilder: FormBuilder,
     private dataService: EnrollmentService,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -62,6 +62,12 @@ export class UserregComponent implements OnInit {
           Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
         ],
       ],
+      address: this.formBuilder.group({
+        street: [''],
+        streetNo: [''],
+        city: [''],
+        postcode: ['']
+      })
     });
   }
 
@@ -141,10 +147,14 @@ export class UserregComponent implements OnInit {
       this.registered = true;
       this.loading = true;
       console.log(this.userForm);
-      this.person = new Person(this.userForm.value);
+      // this.person = new Person(this.userForm.value);
+      const value = JSON.parse(JSON.stringify(this.userForm.value));
+      if (value.address.street === '' && value.address.streetNo == '' && value.address.city === '' && value.address.postcode === '') {
+        delete value.address;
+      }
       this.dataSubscription.unsubscribe();
       this.dataSubscription = this.dataService
-        .enroll(this.userForm.value)
+        .enroll(value)
         .subscribe({
           next: () => {
             this.snackBar.open('succesfully saved', 'close');
@@ -160,6 +170,10 @@ export class UserregComponent implements OnInit {
 
   getFormControl(name: string): FormControl {
     return this.userForm.get(name) as FormControl;
+  }
+
+  getAddressFormGroup(): FormGroup {
+    return this.userForm.get('address') as FormGroup;
   }
 
   clearFormControlValue(name: string): void {

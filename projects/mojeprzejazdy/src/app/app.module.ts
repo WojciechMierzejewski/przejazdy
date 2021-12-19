@@ -25,6 +25,7 @@ import { TransitReserveComponent } from './components/transits/transit-reserve/t
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
 import { InputTextComponent } from './components/common/inputs/input-text/input-text.component';
+import { AddressComponent } from './components/address/address.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { InputTextComponent } from './components/common/inputs/input-text/input-
     TransitsComponent,
     TransitReserveComponent,
     InputTextComponent,
+    AddressComponent,
   ],
   imports: [
     BrowserModule,
