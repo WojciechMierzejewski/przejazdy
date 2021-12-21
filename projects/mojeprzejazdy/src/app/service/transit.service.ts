@@ -29,7 +29,8 @@ export class TransitService {
   ngOnInit(): void {
     this.dataSubscription = this.addressService
       .fetchData()
-      .subscribe((address) => this.dataSubscription);
+      .subscribe((address) => console.log(address));
+
     this.dataSubscription.unsubscribe();
   }
 
@@ -41,4 +42,9 @@ export class TransitService {
   fetchDataFromServer(): Observable<any> {
     return this.httpClient.get('');
   }
+
+  // private mapAddressToPoints(address: Address[]): points[] {
+  //   return (address: Address[]) =>address.map {address => points };
+
+  // }
 }
