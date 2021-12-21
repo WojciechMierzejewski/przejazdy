@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { Transit } from '../model/transit';
+import { AddressService } from './address.service';
 
 const data: Transit[] = [
   { id: 1, points: [], valid: true, schedules: [] },
@@ -19,13 +20,25 @@ const data: Transit[] = [
   providedIn: 'root',
 })
 export class TransitService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private addressService: AddressService
+  ) {}
+  private dataSubscription: Subscription = Subscription.EMPTY;
+
+  ngOnInit(): void {
+    this.dataSubscription = this.addressService
+      .fetchData()
+      .subscribe((address) => this.dataSubscription);
+    this.dataSubscription.unsubscribe();
+  }
 
   fetchData(): Observable<Transit[]> {
+    console.log(data);
     return of(data);
   }
 
   fetchDataFromServer(): Observable<any> {
-    return this.httpClient.get('/api/destination/all');
+    return this.httpClient.get('');
   }
 }
