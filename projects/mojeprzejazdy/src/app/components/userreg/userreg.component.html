@@ -1,30 +1,21 @@
 <h3>Moje Przejazdy</h3>
 <h4>User registration forms</h4>
 
-<div *ngIf="loading"
-     class="progress-spinner">
+<div *ngIf="loading" class="progress-spinner">
   <mat-progress-spinner [mode]="'indeterminate'"> </mat-progress-spinner>
 </div>
 
-<form *ngIf="!loading"
-      [formGroup]="userForm"
-      (ngSubmit)="onSubmit()">
+<form *ngIf="!loading" [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div class="container-fluid">
     <div class="row">
-      <app-input-text [formGroup]="userForm"
-                      [name]="'name'"> </app-input-text>
-      <app-input-text [formGroup]="userForm"
-                      [name]="'surname'">
+      <app-input-text [formGroup]="userForm" [name]="'name'"> </app-input-text>
+      <app-input-text [formGroup]="userForm" [name]="'surname'">
       </app-input-text>
-      <app-input-text [formGroup]="userForm"
-                      [name]="'email'"> </app-input-text>
-      <app-input-text [formGroup]="userForm"
-                      [name]="'phone'"> </app-input-text>
-      <app-input-text [formGroup]="userForm"
-                      [name]="'login'"> </app-input-text>
-      <app-input-text [formGroup]="userForm"
-                      [name]="'password'"> </app-input-text>
-      <app-address [formGroup]="getAddressFormGroup()"></app-address>
+      <app-input-text [formGroup]="userForm" [name]="'email'"> </app-input-text>
+      <app-input-text [formGroup]="userForm" [name]="'phone'"> </app-input-text>
+      <app-input-text [formGroup]="userForm" [name]="'login'"> </app-input-text>
+      <app-input-text [formGroup]="userForm" [name]="'password'">
+      </app-input-text>
 
       <!-- <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Second name</mat-label>
@@ -143,8 +134,7 @@
       </mat-form-field> -->
       <div class="form-group">
         <br />
-        <button type="submit"
-                class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
