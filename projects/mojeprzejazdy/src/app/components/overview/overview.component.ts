@@ -16,7 +16,7 @@ export class OverviewComponent implements OnInit {
 
   private dataSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: PersonService) { }
+  constructor(private dataService: PersonService) {}
 
   ngOnInit(): void {
     this.dataSubscription.unsubscribe();

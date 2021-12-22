@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
+import { Address } from '../../model/address';
 import { Transit } from '../../model/transit';
+import { AddressService } from '../../service/address.service';
 import { TransitService } from '../../service/transit.service';
 import { TransitReserveComponent } from './transit-reserve/transit-reserve.component';
 
@@ -13,22 +15,43 @@ import { TransitReserveComponent } from './transit-reserve/transit-reserve.compo
 })
 export class TransitsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
-  dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
+  dataSourceTransits: MatTableDataSource<Transit> =
+    new MatTableDataSource<Transit>();
+  dataSourceAddress: MatTableDataSource<Address> =
+    new MatTableDataSource<Address>();
   activeRow?: Transit;
 
   private dataSubscription: Subscription = Subscription.EMPTY;
   private dialogSubscription = Subscription.EMPTY;
 
-  constructor(private dataService: TransitService, private dialog: MatDialog) {}
+  constructor(
+    private dataService: TransitService,
+    private addressService: AddressService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this.dataSubscription = this.dataService
-      .fetchData()
-      .subscribe((data) => (this.dataSource = new MatTableDataSource(data)));
+    this.dataSubscription = this.dataService.fetchData().subscribe((data) => {
+      this.dataSourceTransits = new MatTableDataSource(data);
+    });
     this.dataSubscription.unsubscribe();
     this.dataSubscription = this.dataService
       .fetchDataFromServer()
       .subscribe((data) => console.log('Data from server', data));
+
+    this.dataSubscription = this.addressService
+      .fetchData()
+      .subscribe(
+        (data) => (this.dataSourceAddress = new MatTableDataSource(data))
+      );
+    this.dataSubscription.unsubscribe();
+
+    forkJoin([this.dataSourceTransits, this.dataSourceAddress]).subscribe(
+      ([res1, res2]) => {
+        this.dataSourceTransits = res1;
+        this.dataSourceAddress = res2;
+      }
+    );
   }
 
   ngOnDestroy(): void {
@@ -38,8 +61,8 @@ export class TransitsComponent implements OnInit, OnDestroy {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    if (this.dataSource) {
-      this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSourceTransits) {
+      this.dataSourceTransits.filter = filterValue.trim().toLowerCase();
     }
   }
 

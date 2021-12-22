@@ -17,6 +17,7 @@ export class AddressService {
   constructor(private httpClient: HttpClient) {}
 
   fetchData(): Observable<Address[]> {
+    console.log(data, 'adresy');
     return of(data);
   }
 
