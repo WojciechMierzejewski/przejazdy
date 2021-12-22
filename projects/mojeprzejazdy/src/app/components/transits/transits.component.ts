@@ -47,7 +47,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
     this.dataSubscription.unsubscribe();
 
     forkJoin([this.dataSourceTransits, this.dataSourceAddress]).subscribe(
-      ([res1, res2]) => {
+      ({ res1, res2 }) => {
         this.dataSourceTransits = res1;
         this.dataSourceAddress = res2;
       }
