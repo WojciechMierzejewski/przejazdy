@@ -16,16 +16,16 @@ export class OverviewComponent implements OnInit {
 
   private dataSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: PersonService) {}
+  constructor(private dataService: PersonService) { }
 
   ngOnInit(): void {
-    this.dataSubscription = this.dataService
-      .fetchData()
-      .subscribe((data) => (this.dataSource = new MatTableDataSource(data)));
     this.dataSubscription.unsubscribe();
     this.dataSubscription = this.dataService
       .fetchDataFromServer()
-      .subscribe((data) => console.log('Data from server', data));
+      .subscribe((data) => {
+        console.log('Data from server', data);
+        this.dataSource = new MatTableDataSource(data);
+      });
   }
 
   ngOnDestroy(): void {
