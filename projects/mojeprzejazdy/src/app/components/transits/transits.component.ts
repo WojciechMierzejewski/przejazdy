@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { forkJoin, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Address } from '../../model/address';
 import { Transit } from '../../model/transit';
 import { AddressService } from '../../service/address.service';
@@ -15,6 +15,7 @@ import { TransitReserveComponent } from './transit-reserve/transit-reserve.compo
 })
 export class TransitsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
+  addressArray: Address[] = [];
   dataSourceTransits: MatTableDataSource<Transit> =
     new MatTableDataSource<Transit>();
   dataSourceAddress: MatTableDataSource<Address> =
@@ -22,6 +23,8 @@ export class TransitsComponent implements OnInit, OnDestroy {
   activeRow?: Transit;
 
   private dataSubscription: Subscription = Subscription.EMPTY;
+  // private dataSubscription2: Subscription = Subscription.EMPTY;
+
   private dialogSubscription = Subscription.EMPTY;
 
   constructor(
@@ -41,21 +44,19 @@ export class TransitsComponent implements OnInit, OnDestroy {
 
     this.dataSubscription = this.addressService
       .fetchData()
-      .subscribe(
-        (data) => (this.dataSourceAddress = new MatTableDataSource(data))
-      );
-    this.dataSubscription.unsubscribe();
+      // .pipe(take(1000), toArray())
+      .subscribe((data) => {
+        this.addressArray = data as Address[];
+      });
 
-    forkJoin([this.dataSourceTransits, this.dataSourceAddress]).subscribe(
-      ({ res1, res2 }) => {
-        this.dataSourceTransits = res1;
-        this.dataSourceAddress = res2;
-      }
-    );
+    this.dataSubscription.unsubscribe();
+    console.log(this.addressArray, 'mojearray');
   }
 
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
+    this.dataSubscription.unsubscribe();
+
     this.dialogSubscription.unsubscribe();
   }
 
