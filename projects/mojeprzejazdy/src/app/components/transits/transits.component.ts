@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { Address } from '../../model/address';
 import { Transit } from '../../model/transit';
 import { AddressService } from '../../service/address.service';
 import { TransitService } from '../../service/transit.service';
@@ -15,15 +14,13 @@ import { TransitReserveComponent } from './transit-reserve/transit-reserve.compo
 })
 export class TransitsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
-  addressArray: Address[] = [];
+  addressArray: any = [];
   dataSourceTransits: MatTableDataSource<Transit> =
     new MatTableDataSource<Transit>();
-  dataSourceAddress: MatTableDataSource<Address> =
-    new MatTableDataSource<Address>();
+
   activeRow?: Transit;
 
   private dataSubscription: Subscription = Subscription.EMPTY;
-  // private dataSubscription2: Subscription = Subscription.EMPTY;
 
   private dialogSubscription = Subscription.EMPTY;
 
@@ -41,12 +38,11 @@ export class TransitsComponent implements OnInit, OnDestroy {
     this.dataSubscription = this.dataService
       .fetchDataFromServer()
       .subscribe((data) => console.log('Data from server', data));
-
+    this.dataSubscription.unsubscribe();
     this.dataSubscription = this.addressService
       .fetchData()
-      // .pipe(take(1000), toArray())
-      .subscribe((data) => {
-        this.addressArray = data as Address[];
+      .subscribe((data1) => {
+        data1.forEach((address) => this.addressArray.push(address));
       });
 
     this.dataSubscription.unsubscribe();
@@ -88,5 +84,10 @@ export class TransitsComponent implements OnInit, OnDestroy {
     this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {
       console.log(`Rezultat: ${result}`);
     });
+  }
+
+  getStreet(): string {
+    let street = this.addressArray[0];
+    return `${street}`;
   }
 }

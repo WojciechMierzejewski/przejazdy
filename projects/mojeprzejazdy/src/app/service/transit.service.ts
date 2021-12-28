@@ -33,7 +33,6 @@ export class TransitService {
       .fetchDataFromServer()
       .subscribe((data) => {
         console.log('Data from server11111', data);
-        // this.dataSource = new MatTableDataSource(data);
       });
   }
 
