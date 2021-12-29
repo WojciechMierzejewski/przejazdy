@@ -3,13 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Address } from '../model/address';
 
-const data: Address[] = [
-  { street: '5 th ave', streetNo: 5, city: 'Ny', postcode: 90299 },
-  { street: '6 th ave', streetNo: 5, city: 'Ny', postcode: 90299 },
-  { street: '7 th ave', streetNo: 5, city: 'Ny', postcode: 90299 },
-  { street: '8 th ave', streetNo: 5, city: 'Ny', postcode: 90299 },
-  { street: '9 th ave', streetNo: 5, city: 'Ny', postcode: 90299 },
-];
+const data: Address[] = [];
 @Injectable({
   providedIn: 'root',
 })
@@ -22,6 +16,6 @@ export class AddressService {
   }
 
   fetchDataFromServer(): Observable<any> {
-    return this.httpClient.get('');
+    return this.httpClient.get('/api/address/all');
   }
 }

@@ -31,19 +31,21 @@ export class TransitsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.dataSubscription = this.dataService.fetchData().subscribe((data) => {
-      this.dataSourceTransits = new MatTableDataSource(data);
-    });
+    this.dataSubscription = this.dataService
+      .fetchDataFromServer()
+      .subscribe((data) => {
+        this.dataSourceTransits = new MatTableDataSource(data);
+      });
     this.dataSubscription.unsubscribe();
     this.dataSubscription = this.dataService
       .fetchDataFromServer()
       .subscribe((data) => console.log('Data from server', data));
     this.dataSubscription.unsubscribe();
-    this.dataSubscription = this.addressService
-      .fetchData()
-      .subscribe((data1) => {
-        data1.forEach((address) => this.addressArray.push(address));
-      });
+    // this.dataSubscription = this.addressService
+    //   .fetchDataFromServer()
+    //   .subscribe((data1) => {
+    //     data1.forEach((data1: Address) => this.addressArray.push(data1));
+    //   });
 
     this.dataSubscription.unsubscribe();
     console.log(this.addressArray, 'mojearray');
@@ -86,8 +88,8 @@ export class TransitsComponent implements OnInit, OnDestroy {
     });
   }
 
-  getStreet(): string {
-    let street = this.addressArray[0];
-    return `${street}`;
+  getAddressItem(position: number): string {
+    let item = this.addressArray[position];
+    return `${item}`;
   }
 }
