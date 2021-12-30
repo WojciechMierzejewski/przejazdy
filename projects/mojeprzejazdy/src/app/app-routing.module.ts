@@ -61,7 +61,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes, { enableTracing: false })],
+  imports: [CommonModule, RouterModule.forRoot(routes, { enableTracing: false, useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }
