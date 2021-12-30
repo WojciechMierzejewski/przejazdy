@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
@@ -11,7 +13,7 @@ import { AuthGuard } from './service/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    // component: AppComponent,
+    component: AppComponent,
     children: [
       {
         path: '',
@@ -19,58 +21,47 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'overview',
+        canActivate: [AuthGuard],
+        component: OverviewComponent
+      },
+      {
         path: 'register',
         component: UserregComponent,
+        pathMatch: 'full',
       },
       {
         path: 'login',
         component: LoginComponent,
       },
       {
-        path: 'overview',
+        path: 'schedule',
         canActivate: [AuthGuard],
-        component: OverviewComponent,
+        component: ScheduleComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'transits',
+        canActivate: [AuthGuard],
+        component: TransitsComponent,
         children: [
           {
             path: '',
-            redirectTo: 'schedule',
+            redirectTo: 'transit-reserve',
             pathMatch: 'full',
           },
           {
-            path: 'schedule',
-            component: ScheduleComponent,
-          },
-          {
-            path: 'transits',
-            component: TransitsComponent,
-            children: [
-              {
-                path: '',
-                redirectTo: 'transit-reserve',
-                pathMatch: 'full',
-              },
-              {
-                path: 'transit-reserve',
-                component: TransitReserveComponent,
-              },
-              {
-                path: 'transits',
-                component: TransitsComponent,
-              },
-            ],
-          },
+            path: 'transit-reserve',
+            component: TransitReserveComponent,
+          }
         ],
       },
-      {
-        path: 'schedule',
-        component: ScheduleComponent,
-      },
     ],
-  },
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
+  imports: [CommonModule, RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
