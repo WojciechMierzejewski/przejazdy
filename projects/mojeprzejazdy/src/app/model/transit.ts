@@ -2,7 +2,8 @@ import { Address } from './address';
 
 export interface Transit {
   id: number;
-  points: Address[];
+  points: string;
+  address: Address[];
   valid: boolean;
-  schedules: Date[];
+  schedule: any;
 }

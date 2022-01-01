@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Transit } from '../../model/transit';
-import { AddressService } from '../../service/address.service';
 import { TransitService } from '../../service/transit.service';
 import { TransitReserveComponent } from './transit-reserve/transit-reserve.component';
 
@@ -13,7 +12,7 @@ import { TransitReserveComponent } from './transit-reserve/transit-reserve.compo
   styleUrls: ['./transits.component.css'],
 })
 export class TransitsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['id', 'points', 'valid', 'schedules'];
+  displayedColumns: string[] = ['id', 'points', 'valid', 'schedule'];
   addressArray: any = [];
   dataSourceTransits: MatTableDataSource<Transit> =
     new MatTableDataSource<Transit>();
@@ -21,40 +20,24 @@ export class TransitsComponent implements OnInit, OnDestroy {
   activeRow?: Transit;
 
   private dataSubscription: Subscription = Subscription.EMPTY;
-
   private dialogSubscription = Subscription.EMPTY;
 
   constructor(
     private dataService: TransitService,
-    private addressService: AddressService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.dataSubscription.unsubscribe();
     this.dataSubscription = this.dataService
       .fetchDataFromServer()
       .subscribe((data) => {
         this.dataSourceTransits = new MatTableDataSource(data);
       });
-    this.dataSubscription.unsubscribe();
-    this.dataSubscription = this.dataService
-      .fetchDataFromServer()
-      .subscribe((data) => console.log('Data from server', data));
-    this.dataSubscription.unsubscribe();
-    // this.dataSubscription = this.addressService
-    //   .fetchDataFromServer()
-    //   .subscribe((data1) => {
-    //     data1.forEach((data1: Address) => this.addressArray.push(data1));
-    //   });
-
-    this.dataSubscription.unsubscribe();
-    console.log(this.addressArray, 'mojearray');
   }
 
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
-    this.dataSubscription.unsubscribe();
-
     this.dialogSubscription.unsubscribe();
   }
 
@@ -82,7 +65,6 @@ export class TransitsComponent implements OnInit, OnDestroy {
 
   onReserveClick(row: Transit): void {
     const dialogRef = this.dialog.open(TransitReserveComponent);
-
     this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {
       console.log(`Rezultat: ${result}`);
     });
