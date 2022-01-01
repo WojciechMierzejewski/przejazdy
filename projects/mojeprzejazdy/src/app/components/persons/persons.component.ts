@@ -5,18 +5,18 @@ import { Person } from '../../model/person';
 import { PersonService } from '../../service/person.service ';
 
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css'],
+  selector: 'app-persons',
+  templateUrl: './persons.component.html',
+  styleUrls: ['./persons.component.css'],
 })
-export class OverviewComponent implements OnInit {
+export class PersonsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'surname'];
   dataSource: MatTableDataSource<Person> = new MatTableDataSource<Person>();
   activeRow?: Person;
 
   private dataSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: PersonService) {}
+  constructor(private dataService: PersonService) { }
 
   ngOnInit(): void {
     this.dataSubscription.unsubscribe();

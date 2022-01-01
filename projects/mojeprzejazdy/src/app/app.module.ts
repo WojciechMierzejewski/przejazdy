@@ -16,23 +16,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AddressComponent } from './components/address/address.component';
+import { InputTextComponent } from './components/common/inputs/input-text/input-text.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
-import { OverviewComponent } from './components/overview/overview.component';
+import { PersonsComponent } from './components/persons/persons.component';
 import { ScheduleDialogComponent } from './components/schedule/schedule-dialog/schedule-dialog.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
-import { InputTextComponent } from './components/common/inputs/input-text/input-text.component';
-import { AddressComponent } from './components/address/address.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserregComponent,
-    OverviewComponent,
+    PersonsComponent,
     ScheduleComponent,
     NotfoundComponent,
     ScheduleDialogComponent,

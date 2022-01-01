@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { OverviewComponent } from './components/overview/overview.component';
+import { PersonsComponent } from './components/persons/persons.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 import { TransitsComponent } from './components/transits/transits.component';
@@ -17,13 +17,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'overview',
+        redirectTo: 'transits',
         pathMatch: 'full',
       },
       {
-        path: 'overview',
+        path: 'persons',
         canActivate: [AuthGuard],
-        component: OverviewComponent
+        component: PersonsComponent
       },
       {
         path: 'register',
@@ -45,11 +45,6 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         component: TransitsComponent,
         children: [
-          {
-            path: '',
-            redirectTo: 'transit-reserve',
-            pathMatch: 'full',
-          },
           {
             path: 'transit-reserve',
             component: TransitReserveComponent,
