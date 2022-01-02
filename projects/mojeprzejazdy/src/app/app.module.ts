@@ -26,6 +26,9 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
+import { TransitDetailsComponent } from './components/transits/transit-details/transit-details.component';
+import { TransitAddressesComponent } from './components/transits/transit-details/transit-addresses/transit-addresses.component';
+import { TransitPersonsComponent } from './components/transits/transit-details/transit-persons/transit-persons.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { UserregComponent } from './components/userreg/userreg.component';
     TransitReserveComponent,
     InputTextComponent,
     AddressComponent,
+    TransitDetailsComponent,
+    TransitAddressesComponent,
+    TransitPersonsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Transit } from '../../model/transit';
 import { TransitService } from '../../service/transit.service';
+import { TransitDetailsComponent, TransitDialogData } from './transit-details/transit-details.component';
 import { TransitReserveComponent } from './transit-reserve/transit-reserve.component';
 
 @Component({
@@ -56,11 +57,15 @@ export class TransitsComponent implements OnInit, OnDestroy {
   }
 
   onDblClick(row: Transit): void {
-    console.log('double click:', row);
-  }
-
-  onDetailsClick(row: Transit): void {
-    console.log('details clicked:', row);
+    const dialogConfig: MatDialogConfig<TransitDialogData> = {
+      data: {
+        transit: row
+      },
+    };
+    const dialogRef = this.dialog.open(TransitDetailsComponent, dialogConfig);
+    this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Rezultat: ${result}`);
+    });
   }
 
   onReserveClick(row: Transit): void {

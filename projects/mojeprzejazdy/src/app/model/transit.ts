@@ -1,9 +1,11 @@
 import { Address } from './address';
+import { Person } from './person';
 
 export interface Transit {
   id: number;
-  points: string;
-  address: Address[];
+  points?: string;
   valid: boolean;
   schedule: any;
+  address: Address[];
+  group: Person[];
 }
