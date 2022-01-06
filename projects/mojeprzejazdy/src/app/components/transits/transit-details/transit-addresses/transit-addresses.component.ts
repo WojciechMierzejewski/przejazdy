@@ -5,10 +5,9 @@ import { Address } from 'projects/mojeprzejazdy/src/app/model/address';
 @Component({
   selector: 'app-transit-addresses',
   templateUrl: './transit-addresses.component.html',
-  styleUrls: ['./transit-addresses.component.css']
+  styleUrls: ['./transit-addresses.component.css'],
 })
 export class TransitAddressesComponent implements OnInit {
-
   private _data: Address[] = [];
   @Input() set data(val: Address[]) {
     this._data = val;
@@ -22,9 +21,7 @@ export class TransitAddressesComponent implements OnInit {
   dataSource: MatTableDataSource<Address> = new MatTableDataSource<Address>();
   activeRow?: Address;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
