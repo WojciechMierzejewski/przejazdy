@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Transit } from '../../model/transit';
 import { TransitService } from '../../service/transit.service';
 import { TransitDetailsComponent, TransitDialogData } from './transit-details/transit-details.component';
-import { TransitReserveComponent } from './transit-reserve/transit-reserve.component';
+import { TransitReserveComponent, TransitReserveData } from './transit-reserve/transit-reserve.component';
 
 @Component({
   selector: 'app-routes',
@@ -69,7 +69,12 @@ export class TransitsComponent implements OnInit, OnDestroy {
   }
 
   onReserveClick(event: Event): void {
-    const dialogRef = this.dialog.open(TransitReserveComponent);
+    const dialogConfig: MatDialogConfig<TransitReserveData> = {
+      data: {
+        transit: this.activeRow
+      },
+    };
+    const dialogRef = this.dialog.open(TransitReserveComponent, dialogConfig);
     this.dialogSubscription.unsubscribe();
     this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {
       console.log(`Rezultat: ${result}`);
@@ -79,6 +84,10 @@ export class TransitsComponent implements OnInit, OnDestroy {
   getAddressItem(position: number): string {
     let item = this.addressArray[position];
     return `${item}`;
+  }
+
+  get isRowActive(): boolean {
+    return this.activeRow ? true : false;
   }
 
 }

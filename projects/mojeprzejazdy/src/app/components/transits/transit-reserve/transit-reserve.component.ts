@@ -1,35 +1,30 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { Person } from '../../../model/person';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Transit } from '../../../model/transit';
 
+export interface TransitReserveData {
+  transit?: Transit;
+}
 @Component({
   selector: 'app-transit-reserve',
   templateUrl: './transit-reserve.component.html',
   styleUrls: ['./transit-reserve.component.css'],
 })
 export class TransitReserveComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  dialogTitle: string = 'Transit Reservation';
 
-  displayedColumns: string[] = ['name'];
-  dataSource: MatTableDataSource<Person> = new MatTableDataSource<Person>();
-  activeRow?: Person;
-  private _data: Person[] = [];
-  @Input() set data(val: Person[]) {
-    this._data = val;
-    this.dataSource = new MatTableDataSource(this.data);
+  constructor(public dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) data: TransitReserveData) {
+    this.dialogTitle = `Transit reservation ${data.transit?.id} ${data.transit?.points}`;
   }
 
-  get data(): Person[] {
-    return this._data;
+  ngOnInit(): void { }
+
+  addReservation(): void {
+    // post data to backend - using transit id and user id
+    // create new record in TransitUsers table
+    // to have user id we have to change auth service which should keep user id
+    // if post operation is successful, close the dialog
   }
 
-  ngOnInit(): void {}
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(MatTableDataSource, {
-      width: '500px',
-      data: { name: this.dataSource },
-    });
-  }
 }
