@@ -68,8 +68,9 @@ export class TransitsComponent implements OnInit, OnDestroy {
     });
   }
 
-  onReserveClick(row: Transit): void {
+  onReserveClick(event: Event): void {
     const dialogRef = this.dialog.open(TransitReserveComponent);
+    this.dialogSubscription.unsubscribe();
     this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {
       console.log(`Rezultat: ${result}`);
     });
@@ -79,4 +80,5 @@ export class TransitsComponent implements OnInit, OnDestroy {
     let item = this.addressArray[position];
     return `${item}`;
   }
+
 }
