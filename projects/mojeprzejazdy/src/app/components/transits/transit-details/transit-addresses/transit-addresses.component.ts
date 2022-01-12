@@ -13,6 +13,7 @@ export class TransitAddressesComponent implements OnInit {
     this._data = val;
     this.dataSource = new MatTableDataSource(this.data);
   }
+  templateRef() {}
   get data(): Address[] {
     return this._data;
   }
