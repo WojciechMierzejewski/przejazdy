@@ -4,8 +4,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Transit } from '../../model/transit';
 import { TransitService } from '../../service/transit.service';
-import { TransitDetailsComponent, TransitDialogData } from './transit-details/transit-details.component';
-import { TransitReserveComponent, TransitReserveData } from './transit-reserve/transit-reserve.component';
+import {
+  TransitDetailsComponent,
+  TransitDialogData,
+} from './transit-details/transit-details.component';
+import {
+  TransitReserveComponent,
+  TransitReserveData,
+} from './transit-reserve/transit-reserve.component';
 
 @Component({
   selector: 'app-routes',
@@ -23,10 +29,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = Subscription.EMPTY;
   private dialogSubscription = Subscription.EMPTY;
 
-  constructor(
-    private dataService: TransitService,
-    private dialog: MatDialog
-  ) { }
+  constructor(private dataService: TransitService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.dataSubscription.unsubscribe();
@@ -59,7 +62,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
   onDblClick(row: Transit): void {
     const dialogConfig: MatDialogConfig<TransitDialogData> = {
       data: {
-        transit: row
+        transit: row,
       },
     };
     const dialogRef = this.dialog.open(TransitDetailsComponent, dialogConfig);
@@ -71,7 +74,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
   onReserveClick(event: Event): void {
     const dialogConfig: MatDialogConfig<TransitReserveData> = {
       data: {
-        transit: this.activeRow
+        transit: this.activeRow,
       },
     };
     const dialogRef = this.dialog.open(TransitReserveComponent, dialogConfig);
@@ -89,5 +92,4 @@ export class TransitsComponent implements OnInit, OnDestroy {
   get isRowActive(): boolean {
     return this.activeRow ? true : false;
   }
-
 }
