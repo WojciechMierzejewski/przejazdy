@@ -1,11 +1,21 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { Address } from '../../../model/address';
 import { Person } from '../../../model/person';
 import { Transit } from '../../../model/transit';
+import { AddressesComponent } from '../../addresses/addresses.component';
 
 export interface TransitDialogData {
   transit: Transit;
+}
+
+export interface AddressDialogData {
+  address: Address;
 }
 
 @Component({
@@ -16,10 +26,13 @@ export interface TransitDialogData {
 export class TransitDetailsComponent implements OnInit {
   data?: Transit;
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: TransitDialogData) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) data: TransitDialogData,
+    private dialog: MatDialog
+  ) {
     this.data = data.transit;
   }
-
+  private dialogSubscription = Subscription.EMPTY;
   ngOnInit(): void {}
 
   getPersons(): Person[] {
@@ -28,5 +41,13 @@ export class TransitDetailsComponent implements OnInit {
 
   getAddresses(): Address[] {
     return this.data?.address ?? [];
+  }
+  addAddresses(event: Event) {
+    const dialogConfig: MatDialogConfig<AddressesComponent> = {};
+    const dialogRef = this.dialog.open(AddressesComponent, dialogConfig);
+    this.dialogSubscription.unsubscribe();
+    this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Rezultat: ${result}`);
+    });
   }
 }

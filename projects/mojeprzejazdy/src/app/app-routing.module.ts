@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AddressesComponent } from './components/addresses/addresses.component';
 import { LoginComponent } from './components/login/login.component';
 import { PersonsComponent } from './components/persons/persons.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
@@ -23,13 +24,14 @@ const routes: Routes = [
       {
         path: 'persons',
         canActivate: [AuthGuard],
-        component: PersonsComponent
+        component: PersonsComponent,
       },
       {
         path: 'register',
         component: UserregComponent,
         pathMatch: 'full',
       },
+      { path: 'addresses', component: AddressesComponent, pathMatch: 'full' },
       {
         path: 'login',
         component: LoginComponent,
@@ -48,15 +50,18 @@ const routes: Routes = [
           {
             path: 'transit-reserve',
             component: TransitReserveComponent,
-          }
+          },
         ],
       },
     ],
-  }
+  },
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes, { enableTracing: false, useHash: true })],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes, { enableTracing: false, useHash: true }),
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
