@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Address } from '../../model/address';
 import { AddressService } from '../../service/address.service';
+import { TransitDialogData } from '../transits/transit-details/transit-details.component';
 
 @Component({
-  selector: 'app-persons',
+  selector: 'app-addresses',
   templateUrl: './addresses.component.html',
   styleUrls: ['./addresses.component.css'],
 })
@@ -16,7 +18,12 @@ export class AddressesComponent implements OnInit {
 
   private dataSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: AddressService) {}
+  constructor(private dataService: AddressService, private dialog: MatDialog) {}
+  dialogConfig: MatDialogConfig<TransitDialogData> = {
+    // data: {
+    //   address: row,
+    // },
+  };
 
   ngOnInit(): void {
     this.dataSubscription.unsubscribe();
@@ -48,5 +55,17 @@ export class AddressesComponent implements OnInit {
 
   onDblClick(row: Address): void {
     console.log('double click:', row);
+  }
+
+  onSelectClick(event: Event): void {
+    const dialogConfig: MatDialogConfig<TransitDialogData> = {
+      // data: {
+      //     address: this.activeRow,
+      // },
+    };
+  }
+
+  get isRowActive(): boolean {
+    return this.activeRow ? true : false;
   }
 }
