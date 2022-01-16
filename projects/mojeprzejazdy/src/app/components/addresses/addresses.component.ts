@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Address } from '../../model/address';
@@ -18,7 +22,11 @@ export class AddressesComponent implements OnInit {
 
   private dataSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: AddressService, private dialog: MatDialog) {}
+  constructor(
+    private dataService: AddressService,
+    private dialog: MatDialog,
+    private dialogRef: MatDialogRef<AddressesComponent>
+  ) {}
   dialogConfig: MatDialogConfig<TransitDialogData> = {
     // data: {
     //   address: row,
@@ -55,6 +63,7 @@ export class AddressesComponent implements OnInit {
 
   onDblClick(row: Address): void {
     console.log('double click:', row);
+    this.dialogRef.close(row);
   }
 
   onSelectClick(event: Event): void {

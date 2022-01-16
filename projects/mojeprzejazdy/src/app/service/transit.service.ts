@@ -11,7 +11,7 @@ const data: Transit[] = [];
   providedIn: 'root',
 })
 export class TransitService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
   private dataSubscription: Subscription = Subscription.EMPTY;
   dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
 
@@ -21,13 +21,16 @@ export class TransitService {
   }
 
   fetchDataFromServer(): Observable<Transit[]> {
-    return this.httpClient.get('/api/transit/all')
-      .pipe(map(data => {
-        const result: Transit[] = (data as Transit[])
-          .map(item => ({ ...item, points: this.mapAddressesToPoints(item.address) }));
+    return this.httpClient.get('/api/transit/all').pipe(
+      map((data) => {
+        const result: Transit[] = (data as Transit[]).map((item) => ({
+          ...item,
+          points: this.mapAddressesToPoints(item.address),
+        }));
         console.log(result);
         return result;
-      }));
+      })
+    );
   }
 
   mapAddressesToPoints(addresses: Address[]): string {
@@ -35,5 +38,13 @@ export class TransitService {
       return previous + (current.city ?? '-') + '; ';
     }, '');
   }
-}
 
+  fetchTransitDetails(id: number): Observable<Transit> {
+    return this.httpClient
+      .get(`api/transit/get?transitId=${id}`)
+      .pipe(map((data) => data as Transit));
+  }
+  addAddressToTransit(transitId: number, addressId: number): Observable<any> {
+    return this.httpClient.post('api/transit/save', { transitId, addressId });
+  }
+}

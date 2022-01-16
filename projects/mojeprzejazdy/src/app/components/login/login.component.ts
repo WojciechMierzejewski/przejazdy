@@ -3,7 +3,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
@@ -18,17 +18,17 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     public formBuilder: FormBuilder
-  ) { }
+  ) {}
 
   login = '';
   password = '';
   submitted = false;
   loginForm: FormGroup = new FormGroup({
     login: new FormControl('admin', [Validators.required]),
-    password: new FormControl('admin', [Validators.required]),
+    password: new FormControl('adminadmin', [Validators.required]),
   });
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   // onLogin(): void {
   //   const x = false;

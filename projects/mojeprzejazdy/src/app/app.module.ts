@@ -30,6 +30,7 @@ import { TransitPersonsComponent } from './components/transits/transit-details/t
 import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
+import { AddAddressComponent } from './components/add-address/add-address.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { UserregComponent } from './components/userreg/userreg.component';
     TransitDetailsComponent,
     TransitAddressesComponent,
     TransitPersonsComponent,
+    AddAddressComponent,
   ],
   imports: [
     BrowserModule,

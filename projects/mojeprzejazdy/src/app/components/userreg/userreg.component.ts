@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
@@ -31,9 +31,10 @@ export class UserregComponent implements OnInit {
     public formBuilder: FormBuilder,
     private dataService: EnrollmentService,
     private snackBar: MatSnackBar
-  ) { }
-
-  ngOnInit() {
+  ) {
+    this.createFormGroup();
+  }
+  private createFormGroup(): void {
     this.userForm = this.formBuilder.group({
       name: [
         '',
@@ -66,10 +67,11 @@ export class UserregComponent implements OnInit {
         street: [''],
         streetNo: [''],
         city: [''],
-        postcode: ['']
-      })
+        postcode: [''],
+      }),
     });
   }
+  ngOnInit() {}
 
   invalidFirstName(): boolean {
     const result =
@@ -149,22 +151,25 @@ export class UserregComponent implements OnInit {
       console.log(this.userForm);
       // this.person = new Person(this.userForm.value);
       const value = JSON.parse(JSON.stringify(this.userForm.value));
-      if (value.address.street === '' && value.address.streetNo == '' && value.address.city === '' && value.address.postcode === '') {
+      if (
+        value.address.street === '' &&
+        value.address.streetNo == '' &&
+        value.address.city === '' &&
+        value.address.postcode === ''
+      ) {
         delete value.address;
       }
       this.dataSubscription.unsubscribe();
-      this.dataSubscription = this.dataService
-        .enroll(value)
-        .subscribe({
-          next: () => {
-            this.snackBar.open('succesfully saved', 'close');
-            this.loading = false;
-          },
-          error: (err) => {
-            this.snackBar.open(err, 'close');
-            this.loading = false;
-          },
-        });
+      this.dataSubscription = this.dataService.enroll(value).subscribe({
+        next: () => {
+          this.snackBar.open('succesfully saved', 'close');
+          this.loading = false;
+        },
+        error: (err) => {
+          this.snackBar.open(err, 'close');
+          this.loading = false;
+        },
+      });
     }
   }
 
@@ -205,5 +210,9 @@ export class UserregComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
+  }
+
+  getAddressFormgroup(): FormGroup {
+    return this.userForm.get('address') as FormGroup;
   }
 }
