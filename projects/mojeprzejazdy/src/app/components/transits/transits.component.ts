@@ -19,7 +19,7 @@ import {
   styleUrls: ['./transits.component.css'],
 })
 export class TransitsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['id', 'points', 'valid', 'schedule'];
+  displayedColumns: string[] = ['id', 'points', 'valid', 'schedule', 'seats'];
   addressArray: any = [];
   dataSourceTransits: MatTableDataSource<Transit> =
     new MatTableDataSource<Transit>();

@@ -5,10 +5,9 @@ import { Person } from 'projects/mojeprzejazdy/src/app/model/person';
 @Component({
   selector: 'app-transit-persons',
   templateUrl: './transit-persons.component.html',
-  styleUrls: ['./transit-persons.component.css']
+  styleUrls: ['./transit-persons.component.css'],
 })
 export class TransitPersonsComponent implements OnInit {
-
   private _data: Person[] = [];
   @Input() set data(val: Person[]) {
     this._data = val;
@@ -18,13 +17,11 @@ export class TransitPersonsComponent implements OnInit {
     return this._data;
   }
 
-  displayedColumns: string[] = ['name', 'surname'];
+  displayedColumns: string[] = ['id'];
   dataSource: MatTableDataSource<Person> = new MatTableDataSource<Person>();
   activeRow?: Person;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

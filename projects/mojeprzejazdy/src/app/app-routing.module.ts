@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AddAddressComponent } from './components/add-address/add-address.component';
 import { AddressesComponent } from './components/addresses/addresses.component';
 import { LoginComponent } from './components/login/login.component';
 import { PersonsComponent } from './components/persons/persons.component';
@@ -32,6 +33,13 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       { path: 'addresses', component: AddressesComponent, pathMatch: 'full' },
+
+      {
+        path: 'addaddresses',
+        component: AddAddressComponent,
+        pathMatch: 'full',
+      },
+
       {
         path: 'login',
         component: LoginComponent,
