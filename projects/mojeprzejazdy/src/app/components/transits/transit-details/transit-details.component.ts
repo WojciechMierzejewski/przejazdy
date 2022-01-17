@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   MatDialog,
   MatDialogConfig,
-  MAT_DIALOG_DATA,
+  MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { of, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -42,18 +42,22 @@ export class TransitDetailsComponent implements OnInit, OnDestroy {
       .fetchTransitDetails(data.transit.id)
       .subscribe((data) => (this.data = data));
   }
-  ngOnInit(): void {}
+
+  ngOnInit(): void { }
+
   ngOnDestroy(): void {
     this.dialogSubscription.unsubscribe();
     this.dataSubscription.unsubscribe();
   }
+
   getPersons(): Person[] {
-    return this.data?.group ?? [];
+    return this.data?.transitUsers ?? [];
   }
 
-  getAddresses(): Address[] {
-    return this.data?.address ?? [];
+  getAddresses(): { address: Address }[] {
+    return this.data?.transitAddresses ?? [];
   }
+
   addAddresses(event: Event) {
     const dialogConfig: MatDialogConfig<TransitDialogData> = {};
     const dialogRef = this.dialog.open(AddressesComponent, dialogConfig);

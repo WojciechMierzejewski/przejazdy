@@ -6,6 +6,6 @@ export interface Transit {
   points?: string;
   valid: boolean;
   schedule: any;
-  address: Address[];
-  group: Person[];
+  transitAddresses: { address: Address }[];
+  transitUsers: Person[];
 }

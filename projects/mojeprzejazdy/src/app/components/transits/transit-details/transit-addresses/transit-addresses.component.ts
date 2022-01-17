@@ -8,13 +8,14 @@ import { Address } from 'projects/mojeprzejazdy/src/app/model/address';
   styleUrls: ['./transit-addresses.component.css'],
 })
 export class TransitAddressesComponent implements OnInit {
-  private _data: Address[] = [];
-  addresses = [];
-  @Input() set data(val: Address[]) {
+  private _data: { address: Address }[] = [];
+  addresses: Address[] = [];
+  @Input() set data(val: { address: Address }[]) {
     this._data = val;
-    this.dataSource = new MatTableDataSource(this.data);
+    this.addresses = val?.map(v => v.address) ?? [];
+    this.dataSource = new MatTableDataSource(this.addresses);
   }
-  get data(): Address[] {
+  get data(): { address: Address }[] {
     return this._data;
   }
 
@@ -22,8 +23,7 @@ export class TransitAddressesComponent implements OnInit {
   dataSource: MatTableDataSource<Address> = new MatTableDataSource<Address>();
   activeRow?: Address;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
-  @Input() address: Address[] = [];
+  ngOnInit(): void { }
 }
