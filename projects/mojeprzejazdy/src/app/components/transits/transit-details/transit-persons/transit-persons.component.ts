@@ -17,7 +17,7 @@ export class TransitPersonsComponent implements OnInit {
     return this._data;
   }
 
-  displayedColumns: string[] = ['id'];
+  displayedColumns: string[] = ['id', 'surname'];
   dataSource: MatTableDataSource<Person> = new MatTableDataSource<Person>();
   activeRow?: Person;
 

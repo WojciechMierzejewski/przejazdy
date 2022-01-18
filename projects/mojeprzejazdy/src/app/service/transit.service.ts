@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Observable, of, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Address } from '../model/address';
@@ -13,7 +12,7 @@ const data: Transit[] = [];
 export class TransitService {
   constructor(private httpClient: HttpClient) {}
   private dataSubscription: Subscription = Subscription.EMPTY;
-  dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
+  // dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
 
   fetchData(): Observable<Transit[]> {
     console.log(data);
