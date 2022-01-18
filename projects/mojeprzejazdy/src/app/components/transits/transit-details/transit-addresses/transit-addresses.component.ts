@@ -9,10 +9,11 @@ import { Address } from 'projects/mojeprzejazdy/src/app/model/address';
 })
 export class TransitAddressesComponent implements OnInit {
   private _data: Address[] = [];
-  addresses = [];
+  addresses: Address[] = [];
   @Input() set data(val: Address[]) {
     this._data = val;
-    this.dataSource = new MatTableDataSource(this.data);
+
+    this.dataSource = new MatTableDataSource(this.addresses);
   }
   get data(): Address[] {
     return this._data;
@@ -25,5 +26,4 @@ export class TransitAddressesComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  @Input() address: Address[] = [];
 }

@@ -1,8 +1,11 @@
 <h2 mat-dialog-title>Transit Details</h2>
-<app-transit-addresses [data]="getAddresses()"></app-transit-addresses>
 
-<app-transit-persons [data]="getPersons()"></app-transit-persons>
-<!-- <app-addresses></app-addresses> -->
+<app-transit-addresses [data]="getAddresses()" style="width: 100%">
+</app-transit-addresses>
+
+<app-transit-persons [data]="getPersons()" style="width: 100%">
+</app-transit-persons>
+
 <mat-dialog-actions align="end">
   <button mat-button (click)="addAddresses($event)">Add addresses</button>
 </mat-dialog-actions>

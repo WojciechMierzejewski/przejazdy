@@ -42,18 +42,22 @@ export class TransitDetailsComponent implements OnInit, OnDestroy {
       .fetchTransitDetails(data.transit.id)
       .subscribe((data) => (this.data = data));
   }
+
   ngOnInit(): void {}
+
   ngOnDestroy(): void {
     this.dialogSubscription.unsubscribe();
     this.dataSubscription.unsubscribe();
   }
+
   getPersons(): Person[] {
-    return this.data?.group ?? [];
+    return this.data?.transitUsers ?? [];
   }
 
   getAddresses(): Address[] {
     return this.data?.address ?? [];
   }
+
   addAddresses(event: Event) {
     const dialogConfig: MatDialogConfig<TransitDialogData> = {};
     const dialogRef = this.dialog.open(AddressesComponent, dialogConfig);

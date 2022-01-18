@@ -6,11 +6,11 @@ import { Transit } from '../../model/transit';
 import { TransitService } from '../../service/transit.service';
 import {
   TransitDetailsComponent,
-  TransitDialogData,
+  TransitDialogData
 } from './transit-details/transit-details.component';
 import {
   TransitReserveComponent,
-  TransitReserveData,
+  TransitReserveData
 } from './transit-reserve/transit-reserve.component';
 
 @Component({
@@ -29,7 +29,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = Subscription.EMPTY;
   private dialogSubscription = Subscription.EMPTY;
 
-  constructor(private dataService: TransitService, private dialog: MatDialog) {}
+  constructor(private dataService: TransitService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataSubscription.unsubscribe();
@@ -64,6 +64,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
       data: {
         transit: row,
       },
+      minWidth: '800px'
     };
     const dialogRef = this.dialog.open(TransitDetailsComponent, dialogConfig);
     this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {

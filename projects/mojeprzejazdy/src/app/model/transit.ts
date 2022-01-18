@@ -7,5 +7,5 @@ export interface Transit {
   valid: boolean;
   schedule: any;
   address: Address[];
-  group: Person[];
+  transitUsers: Person[];
 }
