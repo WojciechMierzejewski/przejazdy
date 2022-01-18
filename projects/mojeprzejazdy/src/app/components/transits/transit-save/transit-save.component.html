@@ -1,0 +1,8 @@
+<p>Create a new transit</p>
+
+<mat-form-field appearance="fill">
+  <mat-label>How many seats do you offer?</mat-label>
+  <input matInput [(ngModel)]="seats" />
+</mat-form-field>
+
+<button mat-raised-button (click)="openDialog()">Confirmed</button>

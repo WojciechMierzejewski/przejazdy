@@ -31,6 +31,7 @@ import { TransitReserveComponent } from './components/transits/transit-reserve/t
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
 import { AddAddressComponent } from './components/add-address/add-address.component';
+import { TransitSaveComponent } from './components/transits/transit-save/transit-save.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AddAddressComponent } from './components/add-address/add-address.compon
     TransitAddressesComponent,
     TransitPersonsComponent,
     AddAddressComponent,
+    TransitSaveComponent,
   ],
   imports: [
     BrowserModule,
