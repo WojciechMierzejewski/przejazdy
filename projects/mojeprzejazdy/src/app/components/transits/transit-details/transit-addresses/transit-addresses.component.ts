@@ -19,13 +19,7 @@ export class TransitAddressesComponent implements OnInit {
     return this._data;
   }
 
-  displayedColumns: string[] = [
-    'id',
-    'street',
-    'streetNo',
-    'city',
-    'postalCode',
-  ];
+  displayedColumns: string[] = ['id', 'street'];
   dataSource: MatTableDataSource<Address> = new MatTableDataSource<Address>();
   activeRow?: Address;
 
