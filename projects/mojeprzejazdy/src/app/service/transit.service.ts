@@ -25,7 +25,7 @@ export class TransitService {
       map((data) => {
         const result: Transit[] = (data as Transit[]).map((item) => ({
           ...item,
-          // points: this.mapAddressesToPoints(item.address),
+          points: this.mapAddressesToPoints(item.address),
         }));
         console.log(result);
         return result;
