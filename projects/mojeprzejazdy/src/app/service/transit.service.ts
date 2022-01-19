@@ -10,7 +10,7 @@ const data: Transit[] = [];
   providedIn: 'root',
 })
 export class TransitService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
   private dataSubscription: Subscription = Subscription.EMPTY;
   // dataSource: MatTableDataSource<Transit> = new MatTableDataSource<Transit>();
 
@@ -43,7 +43,12 @@ export class TransitService {
       .get(`api/transit/get?transitId=${id}`)
       .pipe(map((data) => data as Transit));
   }
+
   addAddressToTransit(transitId: number, addressId: number): Observable<any> {
     return this.httpClient.post('api/transit/save', { transitId, addressId });
+  }
+
+  createTransit(transit: Transit): Observable<any> {
+    return this.httpClient.post('api/transit/save', transit);
   }
 }

@@ -8,4 +8,5 @@ export interface Transit {
   schedule: any;
   address: Address[];
   transitUsers: Person[];
+  seats: number;
 }
