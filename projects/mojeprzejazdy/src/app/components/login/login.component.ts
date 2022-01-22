@@ -57,4 +57,7 @@ export class LoginComponent implements OnInit {
   getFormControl(name: string): FormControl {
     return this.loginForm.get(name) as FormControl;
   }
+  btnClick() {
+    this.router.navigateByUrl('/register');
+  }
 }

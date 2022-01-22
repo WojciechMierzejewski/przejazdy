@@ -86,6 +86,7 @@ body {
   width: 100%;
   display: block;
   font-weight: 700;
+  margin: auto;
 }
 
 .login-wrapper mat-card-header mat-card-title {
@@ -105,4 +106,21 @@ body {
 
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
+}
+
+.grandParentContaniner {
+  display: table;
+  height: 100%;
+  margin: 30;
+}
+
+.parentContainer {
+  display: table-cell;
+  vertical-align: middle;
+}
+.imageContianer {
+  background-image: url();
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }

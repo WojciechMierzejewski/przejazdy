@@ -6,11 +6,11 @@ import { Transit } from '../../model/transit';
 import { TransitService } from '../../service/transit.service';
 import {
   TransitDetailsComponent,
-  TransitDialogData
+  TransitDialogData,
 } from './transit-details/transit-details.component';
 import {
   TransitReserveComponent,
-  TransitReserveData
+  TransitReserveData,
 } from './transit-reserve/transit-reserve.component';
 import { TransitSaveComponent } from './transit-save/transit-save.component';
 
@@ -30,7 +30,7 @@ export class TransitsComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = Subscription.EMPTY;
   private dialogSubscription = Subscription.EMPTY;
 
-  constructor(private dataService: TransitService, private dialog: MatDialog) { }
+  constructor(private dataService: TransitService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.dataSubscription.unsubscribe();
@@ -86,14 +86,6 @@ export class TransitsComponent implements OnInit, OnDestroy {
     });
   }
 
-  onCreateClick(event: Event): void {
-    const dialogRef = this.dialog.open(TransitSaveComponent);
-    this.dialogSubscription.unsubscribe();
-    this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Rezultat: ${result}`);
-    });
-  }
-
   getAddressItem(position: number): string {
     let item = this.addressArray[position];
     return `${item}`;
@@ -101,5 +93,12 @@ export class TransitsComponent implements OnInit, OnDestroy {
 
   get isRowActive(): boolean {
     return this.activeRow ? true : false;
+  }
+  onCreateClick(event: Event): void {
+    const dialogRef = this.dialog.open(TransitSaveComponent);
+    this.dialogSubscription.unsubscribe();
+    this.dialogSubscription = dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Rezultat: ${result}`);
+    });
   }
 }

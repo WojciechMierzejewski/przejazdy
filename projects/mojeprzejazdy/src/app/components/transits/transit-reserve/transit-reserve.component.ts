@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { of } from 'rxjs';
@@ -14,27 +15,24 @@ export interface TransitReserveData {
 export class TransitReserveComponent implements OnInit {
   dialogTitle: string = 'Transit Reservation';
 
-  constructor(private dialogRef: MatDialogRef<TransitReserveData>,
-    @Inject(MAT_DIALOG_DATA) data: TransitReserveData) {
+  constructor(
+    private dialogRef: MatDialogRef<TransitReserveData>,
+    @Inject(MAT_DIALOG_DATA) data: TransitReserveData,
+    private httpClient: HttpClient
+  ) {
     this.dialogTitle = `Transit reservation ${data.transit?.id} ${data.transit?.points}`;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   addReservation(): void {
-    // post data to backend - using transit id and user id
-    // create new record in TransitUsers table
-    // to have user id we have to change auth service which should keep user id
-    // if post operation is successful, close the dialog
-    // for example:
     of(true).subscribe({
-      next: result => {
+      next: (result) => {
         if (result === true) {
           this.dialogRef.close();
         }
       },
-      error: err => console.log(err)
-    })
+      error: (err) => console.log(err),
+    });
   }
-
 }

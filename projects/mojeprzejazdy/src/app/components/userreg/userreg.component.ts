@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Person } from '../../model/person';
 import { EnrollmentService } from '../../service/enrollment.service';
@@ -30,7 +31,8 @@ export class UserregComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private dataService: EnrollmentService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {
     this.createFormGroup();
   }
@@ -214,5 +216,8 @@ export class UserregComponent implements OnInit {
 
   getAddressFormgroup(): FormGroup {
     return this.userForm.get('address') as FormGroup;
+  }
+  btnClick() {
+    this.router.navigateByUrl('/transits');
   }
 }
