@@ -101,4 +101,5 @@ export class TransitsComponent implements OnInit, OnDestroy {
       console.log(`Rezultat: ${result}`);
     });
   }
+  btnClick() {}
 }
